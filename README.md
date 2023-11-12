@@ -2,11 +2,11 @@
  ## Dylan Smith's submission for University of Michigan-Flint's 2023 Game Jam for course CSC 591
 
 **How to Play**
-Move with WASD.
-Jump with Spacebar.
-Interact with E.
-Adjust your speed with 1, 2, and 3.
-Attack with Enter.
+- Move with WASD.
+- Jump with Spacebar.
+- Interact with E.
+- Adjust your speed with 1, 2, and 3.
+- Attack with Enter.
 
 **Cryptic Hints**
 - Speakers or headphones on.

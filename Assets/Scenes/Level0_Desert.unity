@@ -5787,6 +5787,10 @@ PrefabInstance:
       propertyPath: minOffset
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6073970857016447004, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
+      propertyPath: MaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6606664286016097629, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.54
