@@ -13,6 +13,7 @@
 	• Ruins from Ancient Ruins in the desert - Part1 (
 	https://assetstore.unity.com/packages/3d/environments/ancient-ruins-in-the-desert-part1-19175) and  Ancient Ruins in the desert - Part2 (https://assetstore.unity.com/packages/3d/environments/ancient-ruins-in-the-desert-part2-19178)
 	• Assorted scenery from Historic environment (https://assetstore.unity.com/packages/3d/environments/historic/historic-environment-142116) and Ancient Ruins and Plants (https://assetstore.unity.com/packages/3d/props/exterior/ancient-ruins-and-plants-201914)
+	• Sparrow sound from Sparrow Sounds (https://assetstore.unity.com/packages/audio/sound-fx/animals/sparrow-sounds-158174)
 
 Tutorials
 	• A* Pathfinding Algorithm (https://learn.unity.com/tutorial/the-a-pathfinding-algorithm-part-1?uv=2021.3&projectId=606451f0edbc2a001f558590#)
@@ -22,4 +23,4 @@ Inspiration
 	• Indiana Jones and the Raiders of the Lost Ark (https://youtu.be/WiXgXIfy-sw?si=dMYXbwRezvSPCLab&t=32)
 	• Attacked by Snakes! by The Aquabats! (https://www.youtube.com/watch?v=GRL0JQirEuY)
 	• Lobster Bucket! by The Aquabats! (https://www.youtube.com/watch?v=rPG8acTac7I)
-
+With a Little Help from My Friends by The Beatles (https://www.youtube.com/watch?v=0C58ttB2-Qg)
