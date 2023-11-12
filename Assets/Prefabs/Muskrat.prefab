@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 1283466557856811748}
   - component: {fileID: 3512824259605213172}
   - component: {fileID: 564277557631118406}
+  - component: {fileID: 4840232887034785041}
   m_Layer: 0
   m_Name: Muskrat
   m_TagString: Untagged
@@ -340,6 +341,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4840232887034785041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501643733735555835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe457407ea05da40b5a07223958a231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4745436138520273350
 GameObject:
   m_ObjectHideFlags: 0

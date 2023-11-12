@@ -6,12 +6,13 @@ public class PlayerController : MonoBehaviour
 {
 
     public float jumpForce = 20f;
-    public float speed = 7f;
+    public float baseSpeed = 5f;
     public float turnSpeed = 120f;
-    public float attackPower = 50f;
+    public float attackPower = 10f;
     public Rigidbody rb;
     public bool isGameOver = false;
-    public int health = 100;
+    public int maxHP = 100;
+    public int currentHP = 100;
 
     private bool isOnGround = true;
     private Animator playerAnim;
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
         // Control the snake's motion
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * speed));
+        transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
         transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
 
         // Enable jumping
@@ -43,14 +44,15 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetTrigger("jump");
         }
 
+        // Rescue if player falls through world
         if (transform.position.y < 0)
         {
             transform.position = new Vector3(transform.position.x, 1, transform.position.y);            
         }
 
-        if (health == 0)
+        if (currentHP == 0)
         {
-            playerAnim.SetTrigger("die");
+            die();
         }
     }
 
@@ -66,6 +68,19 @@ public class PlayerController : MonoBehaviour
             // decrease health
         }
 
+    }
+
+    public void LevelUp()
+    {
+        maxHP += 10;
+        currentHP += 10;
+        baseSpeed += .5f;
+        attackPower += 5f;
+    }
+
+    public void die()
+    {
+        playerAnim.SetTrigger("die");
     }
 
 }

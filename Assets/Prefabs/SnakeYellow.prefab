@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 8300063934350676392}
   - component: {fileID: 7082607468634966390}
   - component: {fileID: 2749327219281660535}
+  - component: {fileID: 8997767800277282499}
   m_Layer: 0
   m_Name: SnakeYellow
   m_TagString: Untagged
@@ -217,6 +218,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8997767800277282499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940809243887592371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe457407ea05da40b5a07223958a231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3783428768243074409
 GameObject:
   m_ObjectHideFlags: 0

@@ -711,6 +711,7 @@ GameObject:
   - component: {fileID: 3275686197159540898}
   - component: {fileID: 6601532549112442627}
   - component: {fileID: 210305951042276850}
+  - component: {fileID: 3732017076706556708}
   m_Layer: 0
   m_Name: Colobus
   m_TagString: Untagged
@@ -790,6 +791,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3732017076706556708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715111457578993085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe457407ea05da40b5a07223958a231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9081145752923426534
 GameObject:
   m_ObjectHideFlags: 0
