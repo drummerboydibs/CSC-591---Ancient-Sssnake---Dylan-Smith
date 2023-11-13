@@ -9,15 +9,17 @@ public class GameController : MonoBehaviour
 {
     public int year = 0;
     public bool isGameOver = false;
-    public int maxSnakes = 6;
+    public int maxLevel = 10;
 
-    
+    GameObject player;
+    PlayerController playerController;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -30,15 +32,13 @@ public class GameController : MonoBehaviour
     {
         if (year == 0)
         {
-            // load temple scene
-            SceneManager.LoadScene("Level1_Temple");
-            year++;
-        } else if (year > 0 && year <= maxSnakes)
+            
+        } else if (year > 0 && year <= maxLevel)
         {
             // increase the snakes' size and bite power
-
-
             year++;
+            playerController.LevelUp();
+
         }
     }
 }

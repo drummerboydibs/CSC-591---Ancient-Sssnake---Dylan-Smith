@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Friend
   - Deliverable
+  - Lava
+  - BoobyTrap
+  - OpeningWall
   layers:
   - Default
   - TransparentFX

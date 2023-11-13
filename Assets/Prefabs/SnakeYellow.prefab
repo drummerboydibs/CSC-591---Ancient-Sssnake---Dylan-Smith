@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2749327219281660535}
   - component: {fileID: 8997767800277282499}
   - component: {fileID: 128938838530594064}
+  - component: {fileID: 3517869378111042343}
   m_Layer: 0
   m_Name: SnakeYellow
   m_TagString: Untagged
@@ -155,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2940809243887592371}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.6007515, y: -1, z: 2.064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -331,6 +332,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3517869378111042343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940809243887592371}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f811ce04c0f76488d1553020c77320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 20
+  baseSpeed: 0
+  turnSpeed: 120
+  attackPower: 10
+  rb: {fileID: 0}
+  maxHP: 100
+  currentHP: 100
 --- !u!1 &3783428768243074409
 GameObject:
   m_ObjectHideFlags: 0

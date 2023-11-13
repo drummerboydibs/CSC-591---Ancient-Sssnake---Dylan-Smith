@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentHP == 0)
         {
-            die();
+            Die();
         }
     }
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         attackPower += 5f;
     }
 
-    public void die()
+    public void Die()
     {
         playerAnim.SetTrigger("die");
     }

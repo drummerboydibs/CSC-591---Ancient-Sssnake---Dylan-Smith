@@ -26,6 +26,10 @@
 - Ruins from Ancient Ruins in the desert - Part1 (https://assetstore.unity.com/packages/3d/environments/ancient-ruins-in-the-desert-part1-19175) and  Ancient Ruins in the desert - Part2 (https://assetstore.unity.com/packages/3d/environments/ancient-ruins-in-the-desert-part2-19178)
 - Assorted scenery from Historic environment (https://assetstore.unity.com/packages/3d/environments/historic/historic-environment-142116) and Ancient Ruins and Plants (https://assetstore.unity.com/packages/3d/props/exterior/ancient-ruins-and-plants-201914)
 - Sparrow sound from Sparrow Sounds (https://assetstore.unity.com/packages/audio/sound-fx/animals/sparrow-sounds-158174)
+- Wind, fire, and torch sound effects from Nature Sound FX (https://assetstore.unity.com/packages/audio/sound-fx/nature-sound-fx-180413)
+- Punch sound, cavern atmosphere, impact sounds, and rolling boulder sound from Free Sound Effects Pack (https://assetstore.unity.com/packages/audio/sound-fx/free-sound-effects-pack-155776)
+- Brick & gorilla sounds from 96 General Library (Free Sample Pack) (https://assetstore.unity.com/packages/audio/sound-fx/96-general-library-free-sample-pack-185157)
+
 ---
 **Tutorials**
 - A* Pathfinding Algorithm (https://learn.unity.com/tutorial/the-a-pathfinding-algorithm-part-1?uv=2021.3&projectId=606451f0edbc2a001f558590#)
