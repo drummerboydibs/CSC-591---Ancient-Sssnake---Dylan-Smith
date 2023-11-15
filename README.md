@@ -29,6 +29,7 @@
 - Wind, fire, and torch sound effects from Nature Sound FX (https://assetstore.unity.com/packages/audio/sound-fx/nature-sound-fx-180413)
 - Punch sound, cavern atmosphere, impact sounds, and rolling boulder sound from Free Sound Effects Pack (https://assetstore.unity.com/packages/audio/sound-fx/free-sound-effects-pack-155776)
 - Brick & gorilla sounds from 96 General Library (Free Sample Pack) (https://assetstore.unity.com/packages/audio/sound-fx/96-general-library-free-sample-pack-185157)
+- Skeletons from Skeleton Warrior 1 (https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/skeleton-warrior-1-222338)
 
 ---
 **Tutorials**

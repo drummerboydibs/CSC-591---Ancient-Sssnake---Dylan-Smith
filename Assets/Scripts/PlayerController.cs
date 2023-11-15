@@ -66,6 +66,11 @@ public class PlayerController : MonoBehaviour
         } else if (collision.gameObject.CompareTag("Enemy"))
         {
             // decrease health
+            currentHP -= 20;
+        } else if (collision.gameObject.CompareTag("Lava"))
+        {
+            Die();
+            
         }
 
     }
@@ -82,5 +87,13 @@ public class PlayerController : MonoBehaviour
     {
         playerAnim.SetTrigger("die");
     }
+
+    public void Attack()
+    {
+        playerAnim.SetTrigger("attack");
+
+    }
+
+    
 
 }

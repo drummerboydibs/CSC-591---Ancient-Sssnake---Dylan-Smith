@@ -50,7 +50,7 @@ public class FriendController : MonoBehaviour
 
     void Attack()
     {
-        
+        anim.SetTrigger("attack");
     }
 
     public void Die()

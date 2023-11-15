@@ -25,7 +25,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerController.currentHP == 0)
+        {
+            isGameOver = true;
+        }
     }
 
     void completeLevel(int year)
