@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     public bool isGameOver = false;
     public int maxHP = 100;
     public int currentHP = 100;
+    public bool isInConversation = false;
 
     private bool isOnGround = true;
     private Animator playerAnim;
     private GameObject playerSnake;
+    private GameController gameController;
 
     
     // Start is called before the first frame update
@@ -25,19 +27,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerSnake = GameObject.Find("Snake");
         playerAnim = playerSnake.GetComponent<Animator>();
+        // gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Control the snake's motion
-        float verticalInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
-        transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
+        if (!isGameOver && !isInConversation)
+        {
+            float verticalInput = Input.GetAxis("Vertical");
+            float horizontalInput = Input.GetAxis("Horizontal");
+            transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
+            transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
+        }
+        
 
         // Enable jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !isGameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !isGameOver && !isInConversation)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
@@ -86,6 +93,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerAnim.SetTrigger("die");
+        //gameController.isGameOver = true;
     }
 
     public void Attack()

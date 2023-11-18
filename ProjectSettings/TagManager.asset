@@ -11,6 +11,7 @@ TagManager:
   - Lava
   - BoobyTrap
   - OpeningWall
+  - UI
   layers:
   - Default
   - TransparentFX

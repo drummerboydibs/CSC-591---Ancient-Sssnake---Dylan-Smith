@@ -35,6 +35,7 @@
 **Tutorials**
 - A* Pathfinding Algorithm (https://learn.unity.com/tutorial/the-a-pathfinding-algorithm-part-1?uv=2021.3&projectId=606451f0edbc2a001f558590#)
 - How to make AWESOME Scene Transitions in Unity! (https://www.youtube.com/watch?v=CE9VOZivb3I)
+- How to make a Dialogue System in Unity (https://www.youtube.com/watch?v=_nRzoTzeyxU) (some comments also provided some helpful guidance)
 ---
 **Inspiration**
 - Indiana Jones and the Raiders of the Lost Ark (https://youtu.be/WiXgXIfy-sw?si=dMYXbwRezvSPCLab&t=32)
