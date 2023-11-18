@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
 
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
+        animator = GameObject.Find("DialogueBackground").GetComponent<Animator>();
         
     }
 
@@ -51,18 +52,23 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-
+        // Queue is FIFO. Dequeue grabs the first object in the queue.
         string sentence = sentences.Dequeue();
+        // Stop already appearing sentence when a new one starts (if player starts one before previous finishes)
+        StopAllCoroutines();
+        // Animate text appearing
+        StartCoroutine(TypeSentence(sentence));
+        
         dialogueText.text = sentence;
         
-        // Allow player to skip
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            DisplayNextSentence();
-        } else if (Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            EndDialogue();
-        }
+        //// Allow player to skip
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    DisplayNextSentence();
+        //} else if (Input.GetKeyDown(KeyCode.Escape)) 
+        //{
+        //    EndDialogue();
+        //}
     }
 
     void EndDialogue()
@@ -70,6 +76,19 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of conversation.");
         playerController.isInConversation = false;
         animator.SetBool("isOpen", false);
+    }
+
+    IEnumerator TypeSentence (string sentence)
+    {
+        // Initialize to empty string
+        dialogueText.text = "";
+
+        // Break provided sentence into an array of characters so they can be added one at a time
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return null;
+        }
     }
 
 }

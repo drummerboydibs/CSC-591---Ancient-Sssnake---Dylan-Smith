@@ -10,15 +10,18 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 120f;
     public float attackPower = 10f;
     public Rigidbody rb;
-    public bool isGameOver = false;
     public int maxHP = 100;
     public int currentHP = 100;
     public bool isInConversation = false;
+    public Vector3 sizeChange;
 
     private bool isOnGround = true;
     private Animator playerAnim;
     private GameObject playerSnake;
+
+    private GameObject gameControllerObject;
     private GameController gameController;
+    
 
     
     // Start is called before the first frame update
@@ -27,14 +30,15 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerSnake = GameObject.Find("Snake");
         playerAnim = playerSnake.GetComponent<Animator>();
-        // gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        gameControllerObject = GameObject.Find("GameController");
+        gameController = gameControllerObject.GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Control the snake's motion
-        if (!isGameOver && !isInConversation)
+        if (!gameController.isGameOver && !isInConversation)
         {
             float verticalInput = Input.GetAxis("Vertical");
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -44,7 +48,7 @@ public class PlayerController : MonoBehaviour
         
 
         // Enable jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !isGameOver && !isInConversation)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameController.isGameOver && !isInConversation)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 1, transform.position.y);            
         }
 
+        // Death animation
         if (currentHP == 0)
         {
             Die();
@@ -70,6 +75,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Environment"))
         {
             isOnGround = true;
+            playerAnim.SetTrigger("walk");
         } else if (collision.gameObject.CompareTag("Enemy"))
         {
             // decrease health
@@ -88,12 +94,14 @@ public class PlayerController : MonoBehaviour
         currentHP += 10;
         baseSpeed += .5f;
         attackPower += 5f;
+        transform.localScale += sizeChange;
+
     }
 
     public void Die()
     {
         playerAnim.SetTrigger("die");
-        //gameController.isGameOver = true;
+        gameController.isGameOver = true;
     }
 
     public void Attack()

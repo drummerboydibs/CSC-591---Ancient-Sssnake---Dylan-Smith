@@ -9,17 +9,28 @@ public class GameController : MonoBehaviour
 {
     public int year = 0;
     public bool isGameOver = false;
-    public int maxLevel = 10;
+    public int currentLevel;
+    
 
-    GameObject player;
-    PlayerController playerController;
+    public GameObject player;
+    public PlayerController playerController;
+
+    GameObject levelProgresserObject;
+    LevelProgresser levelProgresser;
+
+    private int maxLevel = 10;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
+        currentLevel = 0;
+
+        levelProgresserObject = GameObject.Find("LevelTrigger");
+        levelProgresser = levelProgresserObject.GetComponent<LevelProgresser>();
+        
     }
 
     // Update is called once per frame
@@ -31,11 +42,12 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void completeLevel(int year)
+    void levelUp(int year)
     {
+        
         if (year == 0)
         {
-            
+            playerController.LevelUp();
         } else if (year > 0 && year <= maxLevel)
         {
             // increase the snakes' size and bite power
@@ -44,4 +56,21 @@ public class GameController : MonoBehaviour
 
         }
     }
+
+    void completeLevel()
+    {
+        if (currentLevel < 2)
+        {
+            currentLevel++;
+        }
+
+        levelProgresser.transportPlayerAndAllies(currentLevel);
+    }
+
+    void addAlly(string allyName)
+    {
+        // add allies to an array
+        // this will be checked
+    }
+
 }
