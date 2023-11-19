@@ -12,6 +12,9 @@ TagManager:
   - BoobyTrap
   - OpeningWall
   - UI
+  - Level1Audio
+  - Level2Audio
+  - Level3Audio
   layers:
   - Default
   - TransparentFX

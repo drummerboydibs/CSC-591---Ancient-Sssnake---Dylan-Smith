@@ -13,6 +13,8 @@ public class NPC : MonoBehaviour
     private GameObject dialogueManagerOb;
     private DialogueManager dialogueManager;
 
+    private GameObject interactUI;
+    
 
     private void Start()
     {
@@ -20,6 +22,8 @@ public class NPC : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         dialogueManagerOb = GameObject.Find("DialogueManager");
         dialogueManager = dialogueManagerOb.GetComponent<DialogueManager>();
+        interactUI = GameObject.Find("InteractButton");
+        
 
     }
     private void Update()
@@ -27,6 +31,7 @@ public class NPC : MonoBehaviour
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer < activationDistance ) 
         {
+            interactUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 TriggerDialogue();                
@@ -37,6 +42,7 @@ public class NPC : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        interactUI.SetActive(false);
         playerController.isInConversation = true;
         dialogueManager.StartDialogue(dialogue);
     }

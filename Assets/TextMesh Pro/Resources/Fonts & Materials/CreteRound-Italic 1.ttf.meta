@@ -10,7 +10,9 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Crete Round
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9ef2a6b6def6baa479415b2937ced96c, type: 3}
+  - {fileID: 12800000, guid: e03e9df060cdd2b4bb8bd393e99710c9, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

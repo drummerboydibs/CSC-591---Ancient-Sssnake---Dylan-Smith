@@ -7,29 +7,41 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public int year = 0;
     public bool isGameOver = false;
-    public int currentLevel;
+    public int currentGameLevel;
     
 
     public GameObject player;
     public PlayerController playerController;
+    GameObject soundLevel0;
+    GameObject soundLevel1;
+    GameObject soundLevel2;
+    
 
     GameObject levelProgresserObject;
     LevelProgresser levelProgresser;
 
-    private int maxLevel = 10;
+    GameObject gameOverDialogue;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
-        currentLevel = 0;
+        currentGameLevel = 0;
 
         levelProgresserObject = GameObject.Find("LevelTrigger");
         levelProgresser = levelProgresserObject.GetComponent<LevelProgresser>();
+
+        gameOverDialogue = GameObject.Find("GameOver");
+
+        soundLevel0 = GameObject.Find("DesertSound");
+        soundLevel1 = GameObject.Find("TempleSound");
+        soundLevel2 = GameObject.Find("PitSound");
+
+        soundLevel1.SetActive(false);
+        soundLevel2.SetActive(false);
         
     }
 
@@ -38,39 +50,91 @@ public class GameController : MonoBehaviour
     {
         if (playerController.currentHP == 0)
         {
-            isGameOver = true;
+            GameOver();
         }
     }
 
-    void levelUp(int year)
+    void levelUp(int currentGameLevel)
     {
         
-        if (year == 0)
+        if (currentGameLevel == 0)
         {
             playerController.LevelUp();
-        } else if (year > 0 && year <= maxLevel)
-        {
+        } else {
             // increase the snakes' size and bite power
-            year++;
             playerController.LevelUp();
 
         }
     }
 
-    void completeLevel()
+    public void CompleteLevel()
     {
-        if (currentLevel < 2)
+        if (currentGameLevel < 2)
         {
-            currentLevel++;
+            currentGameLevel++;
         }
 
-        levelProgresser.transportPlayerAndAllies(currentLevel);
+        TransportPlayerAndAllies(currentGameLevel);
+        UpdateSoundscape(currentGameLevel);
+
     }
 
     void addAlly(string allyName)
     {
         // add allies to an array
-        // this will be checked
+        // this will be checked 
+    }
+
+    // Stop game, bring up game over text and restart button
+    public void GameOver()
+    {
+        isGameOver = true;
+        gameOverDialogue.gameObject.SetActive(true);
+    }
+
+    // Restart game by reloading the scene
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void TransportPlayerAndAllies(int currentLevel)
+    {
+        if (currentLevel == 0)
+        {
+            player.transform.position = new Vector3(-1.02270f, 0.489f, -2.234f);
+        } else if (currentLevel == 1)
+        {
+            player.transform.position = new Vector3(5.468f, 18.968f, 806.51f);
+        } else if (currentLevel == 2)
+        {
+            player.transform.position = new Vector3(-1.66597f, 1.465f, 992.39f);
+        }
+    }
+
+    void UpdateSoundscape(int currentLevel)
+    {
+        if (currentLevel == 0)
+        {
+            soundLevel0.SetActive(true);
+            soundLevel1.SetActive(false);
+            soundLevel2.SetActive(false);
+            
+        }
+        else if (currentLevel == 1)
+        {
+            soundLevel0.SetActive(false);
+            soundLevel1.SetActive(true);
+            soundLevel2.SetActive(false);
+            
+        }
+        else if (currentLevel == 2)
+        {
+            soundLevel0.SetActive(false);
+            soundLevel1.SetActive(false);
+            soundLevel2.SetActive(true);
+            
+        }
     }
 
 }

@@ -44,6 +44,14 @@ public class PlayerController : MonoBehaviour
             float horizontalInput = Input.GetAxis("Horizontal");
             transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
             transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
+            if (verticalInput == 0 && isOnGround == true)
+            {
+                playerAnim.SetTrigger("stop");
+            } else if (verticalInput != 0 && isOnGround == true)
+            {
+                playerAnim.SetTrigger("walk");
+            }
+            
         }
         
 
@@ -66,6 +74,13 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+
+        // Enable attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,7 +90,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Environment"))
         {
             isOnGround = true;
-            playerAnim.SetTrigger("walk");
         } else if (collision.gameObject.CompareTag("Enemy"))
         {
             // decrease health
@@ -101,12 +115,17 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerAnim.SetTrigger("die");
-        gameController.isGameOver = true;
+        gameController.GameOver();
     }
 
     public void Attack()
     {
         playerAnim.SetTrigger("attack");
+    }
+
+
+    public void Interact()
+    {
 
     }
 

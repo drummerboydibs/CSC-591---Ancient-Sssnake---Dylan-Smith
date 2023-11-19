@@ -12,7 +12,7 @@ public class LevelProgresser : MonoBehaviour
     GameObject gameControllerObject;
     GameController gameController;
     GameObject player;
-    public Vector3[] startPos;
+    
 
 
     private void Start()
@@ -21,45 +21,31 @@ public class LevelProgresser : MonoBehaviour
         gameController = gameControllerObject.GetComponent<GameController>();
         player = GameObject.Find("Player");
 
-        startPos[0] = new Vector3(0f, 18.9f, -13.28f);
-        startPos[1] = new Vector3(0f, 18.9f, -13.28f);
+    }
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collided with " + other.gameObject.name);
         if (other.gameObject.name == "Player")
         {
-            LoadNextLevel();
+            gameController.CompleteLevel();
         }
     }
 
-    public void LoadNextLevel()
-    {
-        StartCoroutine(LoadLevel((gameController.currentLevel)));
-    }
+    
 
-    IEnumerator LoadLevel(int levelIndex)
-    {
-        // Play animation
-        transition.SetTrigger("Start");
+    //IEnumerator LoadLevel(int levelIndex)
+    //{
+    //    // Play animation
+    //    //transition.SetTrigger("Start");
 
-        // Wait for animation to end
-        yield return new WaitForSeconds(transitionTime);
+    //    // Load warp to next level start pos
+    //    transportPlayerAndAllies(levelIndex);
 
-        // Load scene
-        
-    }
+    //    // Wait for animation to end
+    //    yield return new WaitForSeconds(transitionTime);
 
-    public void transportPlayerAndAllies(int nextLevel)
-    {
-        player.transform.position = startPos[nextLevel];
-        // spawn array of allies behind player at new levels
-        // for temple level, they should spawn *above* player
-    }
+
+    //}
 }
