@@ -43,6 +43,13 @@ public class BoobyTrapTrigger : MonoBehaviour
         audio.clip = audioClips[1];
         audio.Play();
         rb.useGravity = true;
+        StartCoroutine(CleanUp());
+    }
+
+    IEnumerator CleanUp()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 
 }

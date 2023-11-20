@@ -10,6 +10,7 @@ public class SecretPassageSwitch : MonoBehaviour
     Animator secretPassage;
     AudioSource secretPassageAudioSource;
     bool isActivated = false;
+    GameObject boulder;
 
 
     // Start is called before the first frame update
@@ -18,6 +19,9 @@ public class SecretPassageSwitch : MonoBehaviour
         player = GameObject.Find("Player");
         secretPassage = GameObject.Find("PassageWay1").GetComponent<Animator>();
         secretPassageAudioSource = GameObject.Find("PassageWay1").GetComponent<AudioSource>();
+        boulder = GameObject.Find("Boulder");
+        boulder.SetActive(false);
+        
     }
 
     // Update is called once per frame

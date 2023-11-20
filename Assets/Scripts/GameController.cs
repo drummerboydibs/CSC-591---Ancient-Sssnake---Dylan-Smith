@@ -14,8 +14,8 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public PlayerController playerController;
     GameObject soundLevel0;
-    GameObject soundLevel1;
-    GameObject soundLevel2;
+    public GameObject soundLevel1;
+    public GameObject soundLevel2;
     
 
     GameObject levelProgresserObject;
@@ -38,9 +38,8 @@ public class GameController : MonoBehaviour
 
         soundLevel0 = GameObject.Find("DesertSound");
         soundLevel1 = GameObject.Find("TempleSound");
-        soundLevel2 = GameObject.Find("PitSound");
-
         soundLevel1.SetActive(false);
+        soundLevel2 = GameObject.Find("PitSound");
         soundLevel2.SetActive(false);
         
     }
@@ -51,6 +50,19 @@ public class GameController : MonoBehaviour
         if (playerController.currentHP == 0)
         {
             GameOver();
+        }
+
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            TransportPlayerAndAllies(0);
+        }
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            TransportPlayerAndAllies(1);
+        }
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            TransportPlayerAndAllies(1);
         }
     }
 

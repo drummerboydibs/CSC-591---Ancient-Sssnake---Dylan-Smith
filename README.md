@@ -29,12 +29,16 @@
 - Punch sound, cavern atmosphere, impact sounds, and rolling boulder sound from Free Sound Effects Pack (https://assetstore.unity.com/packages/audio/sound-fx/free-sound-effects-pack-155776)
 - Skeletons from Skeleton Warrior 1 (https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/skeleton-warrior-1-222338)
 - Person assets and animations from Unity Create With Code Unit 3 - Sound and Effects (https://learn.unity.com/project/unit-3-sound-and-effects?pathwayId=5f7e17e1edbc2a5ec21a20af&missionId=5f7648a4edbc2a5578eb67df)
+- Fire from Free Fire VFX (https://assetstore.unity.com/packages/vfx/particles/fire-explosions/free-fire-vfx-266227)
+- Cat statue from Egyptian Tomb: Cat Statue (https://assetstore.unity.com/packages/3d/environments/historic/egyptian-tomb-cat-statue-119784)
 
 ---
 **Tutorials**
 - A* Pathfinding Algorithm (https://learn.unity.com/tutorial/the-a-pathfinding-algorithm-part-1?uv=2021.3&projectId=606451f0edbc2a001f558590#)
 - How to make AWESOME Scene Transitions in Unity! (https://www.youtube.com/watch?v=CE9VOZivb3I)
 - How to make a Dialogue System in Unity (https://www.youtube.com/watch?v=_nRzoTzeyxU) (some comments also provided some helpful guidance)
+- Making an Agent Patrol Between a Set of Points (https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/NavAgentPatrol.html)
+
 ---
 **Inspiration**
 - Indiana Jones and the Raiders of the Lost Ark (https://youtu.be/WiXgXIfy-sw?si=dMYXbwRezvSPCLab&t=32)

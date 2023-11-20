@@ -8,12 +8,19 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 20f;
     public float baseSpeed = 5f;
     public float turnSpeed = 120f;
-    public float attackPower = 10f;
+    public int attackPower = 10;
     public Rigidbody rb;
     public int maxHP = 100;
     public int currentHP = 100;
     public bool isInConversation = false;
     public Vector3 sizeChange;
+    public float timeSinceLastAttack = 0f;
+    public float attackDelay = 1f;
+    public AudioClip attackSound;
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    public AudioSource audio;
+
 
     private bool isOnGround = true;
     private Animator playerAnim;
@@ -37,6 +44,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeSinceLastAttack += Time.deltaTime;
+        
         // Control the snake's motion
         if (!gameController.isGameOver && !isInConversation)
         {
@@ -76,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Enable attack
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && timeSinceLastAttack > attackDelay)
         {
             Attack();
         }
@@ -107,7 +116,7 @@ public class PlayerController : MonoBehaviour
         maxHP += 10;
         currentHP += 10;
         baseSpeed += .5f;
-        attackPower += 5f;
+        attackPower += 5;
         transform.localScale += sizeChange;
 
     }
@@ -115,20 +124,15 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerAnim.SetTrigger("die");
+        audio.PlayOneShot(deathSound);
         gameController.GameOver();
     }
 
     public void Attack()
     {
         playerAnim.SetTrigger("attack");
+        timeSinceLastAttack = 0;
     }
 
-
-    public void Interact()
-    {
-
-    }
-
-    
 
 }

@@ -1,25 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class FriendController : MonoBehaviour
 {
     public float jumpForce = 20f;
     public float baseSpeed;
     public float turnSpeed = 120f;
-    public float attackPower = 10f;
+    public int attackPower = 10;
     public Rigidbody rb;
-    public int maxHP = 100;
-    public int currentHP = 100;
+    public GameObject player;
+    public PlayerController playerController;
+    public GameObject enemy;
+    public EnemyController enemyController;
+    public GameController gameController;
+    public float attackRange = 1.5f;
+    public float distanceToPlayer;
+    public float distanceToEnemy;
+    public bool isAggroed = false;
+    public float timeSinceLastAttack = 0f;
+    public float attackDelay = 1f;
 
+    NavMeshAgent agent;
     private Animator anim;
     private AnimalSoundController asc;
+    NPC npc;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();   
         rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
+        enemy = GameObject.Find("Archaeologist");
+        enemyController = enemy.GetComponent<EnemyController>();
+        npc = GetComponent<NPC>();
+        
+        // Player levels up every time they make a friend!
+        playerController.LevelUp();
+        
         
         // Reduce sound / chatter when an animal becomes your friend
         asc = GetComponent<AnimalSoundController>();
@@ -30,12 +53,34 @@ public class FriendController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distanceToPlayer = (transform.position - player.transform.position).magnitude;
+        distanceToEnemy = (transform.position - enemy.transform.position).magnitude;
+        timeSinceLastAttack += Time.deltaTime;
+
         // Follow player
-        // 
+        if (distanceToPlayer > 1.5 && !isAggroed)
+        {
+            agent.destination = player.transform.position;
+        }
+        
+        if (distanceToPlayer > 10  && !isAggroed)
+        {
+            CatchUp();
+        }
 
         // if enemy is in range, attack!
+        if (distanceToEnemy < 10)
+        {
+            isAggroed = true;
+            agent.destination = enemy.transform.position;
+        }
 
-        if (currentHP == 0)
+        if (isAggroed && distanceToEnemy < attackRange && timeSinceLastAttack > attackDelay)
+        {
+            Attack();
+        }
+
+        if (npc.currentHp == 0)
         {
             Die();
         }
@@ -51,11 +96,18 @@ public class FriendController : MonoBehaviour
     void Attack()
     {
         anim.SetTrigger("attack");
+        enemyController.currentHp -= attackPower;
+        timeSinceLastAttack = 0;
     }
 
     public void Die()
     {
         anim.SetTrigger("die");
+    }
+
+    void CatchUp()
+    {
+        transform.position = player.transform.position;
     }
 
 }
