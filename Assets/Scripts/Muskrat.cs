@@ -58,5 +58,9 @@ public class Muskrat : MonoBehaviour
                 
     }
 
+    void TriggerInteraction()
+    {
+        npc.Die();
+    }
 
 }

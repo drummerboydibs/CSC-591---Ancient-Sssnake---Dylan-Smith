@@ -8,10 +8,12 @@ public class ShadyManController2 : MonoBehaviour
 {
     private NavMeshAgent agent;
     ShadyMan smc;
-    private int destPoint = 2;
+    private int destPoint = 0;
+    public Transform[] pos;
     Animator animator;
     public bool isDead = false;
     GameObject boulder;
+    
 
     
     // Start is called before the first frame update
@@ -20,19 +22,24 @@ public class ShadyManController2 : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         boulder = GameObject.Find("Boulder");
-        smc = GetComponent<ShadyMan>();
-
+        smc = gameObject.GetComponent<ShadyMan>();
+        agent.autoRepath = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Pick a new destination when approaching current one.
-        if (!agent.pathPending && agent.remainingDistance < 0.5f && !isDead)
+        if (smc.isPart2 && !isDead)
         {
-            GoToNextPoint();
+            // Pick a new destination when approaching current one.
+            if (!agent.pathPending && agent.remainingDistance < 0.2f)
+            {
+                GoToNextPoint();
+            }
+            
         }
+
 
     }
 
@@ -46,12 +53,12 @@ public class ShadyManController2 : MonoBehaviour
         agent.destination = smc.pos[destPoint].position;
         animator.SetTrigger("Walk");
 
-        // Head to next destination. Cycle to beginning if end of array.
-        if (destPoint < 4)
+        
+        if (destPoint < pos.Length - 1)
         {
-            destPoint = (destPoint + 1);
+            destPoint ++;
         } else {
-            destPoint = 1;
+            return;
         }        
     }
 

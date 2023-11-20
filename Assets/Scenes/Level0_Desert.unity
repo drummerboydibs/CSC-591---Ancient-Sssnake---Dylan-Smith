@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bougie
+  npcName: 
   sentences:
   - Do you have any gold I could have, dahling? I do love something shiny.
   - I hear some of the torches may unearth some treasures. That no-goodnick hasn't
@@ -4091,9 +4091,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Angus
+  npcName: Angus
   sentences:
-  - Humans are gross. If you get rid of that one I'll hang out with you laddy.
+  - Humans are gross. If you get rid of that one down there I'll hang out with you
+    laddy.
 --- !u!4 &177204999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1400167785646559077, guid: b625fb29a6cf6f14ca39e1f32b0554f8, type: 3}
@@ -4207,6 +4208,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -4237,7 +4239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: ChunkyMonkey
+  npcName: 
   sentences:
   - Ha! Look at this pipsqueak! You can't eat me!
   - Try coming back when you're bigger than the things I pick out of my toes.
@@ -8351,8 +8353,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
       propertyPath: m_Name
-      value: Percy
+      value: Ann_Achronissssm
       objectReference: {fileID: 0}
+    - target: {fileID: 7278584969867305206, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+      propertyPath: animalSoundPlayer
+      value: 
+      objectReference: {fileID: 1985408340}
     - target: {fileID: 7278584969867305206, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
       propertyPath: animalSound.Array.size
       value: 3
@@ -8372,7 +8378,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985408345}
+    - targetCorrespondingSourceObject: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985408347}
+    - targetCorrespondingSourceObject: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985408346}
   m_SourcePrefab: {fileID: 100100000, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
 --- !u!1 &372393438 stripped
 GameObject:
@@ -8820,6 +8835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationRange: 1.5
   distanceToPlayer: 0
+  isActivated: 0
 --- !u!1 &402141078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1724681867897185238, guid: bddd043cadfc20143b73c9dbed8fd7c9, type: 3}
@@ -12418,7 +12434,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -12843,6 +12859,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   attackSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -16554,6 +16571,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: b186f9485a0828b468f98fe846ae1a68, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1681973803}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: b186f9485a0828b468f98fe846ae1a68, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1681973804}
   m_SourcePrefab: {fileID: 100100000, guid: b186f9485a0828b468f98fe846ae1a68, type: 3}
 --- !u!1 &727927807 stripped
 GameObject:
@@ -23092,7 +23112,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 500
+  far clip plane: 300
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -24353,6 +24373,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2614192390163335747, guid: c58829182f121f24aa5317a22823ca57, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2614192390163335747, guid: c58829182f121f24aa5317a22823ca57, type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7069918631508426034, guid: c58829182f121f24aa5317a22823ca57, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5712624
@@ -24398,34 +24426,11 @@ PrefabInstance:
       value: GreekStatue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8935066204742433684, guid: c58829182f121f24aa5317a22823ca57, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8935066204742433684, guid: c58829182f121f24aa5317a22823ca57, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1022100086}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c58829182f121f24aa5317a22823ca57, type: 3}
---- !u!1 &1022100085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8935066204742433684, guid: c58829182f121f24aa5317a22823ca57, type: 3}
-  m_PrefabInstance: {fileID: 1022100084}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1022100086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022100085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Bougie
-  sentences:
-  - Oh honey, that one isn't even shiny! Be a dear and hit some of those torches
-    and see if you can find something that shines as bright as I.
 --- !u!1 &1025424581
 GameObject:
   m_ObjectHideFlags: 0
@@ -26502,7 +26507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Morsel
+  npcName: 
   sentences:
   - Please don't eat me!
 --- !u!114 &1138873715
@@ -26526,6 +26531,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -30636,7 +30642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Charlie
+  npcName: Charlie
   sentences:
   - I'm so hungry, I could eat a whole bird in one bite. In fact, that sounds great.
     Any chance you've seen one?
@@ -30661,6 +30667,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -31359,124 +31366,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423484842219891879, guid: f706f923cc3c05c49ab300ff8992ad4f, type: 3}
-      propertyPath: m_Lightmapping
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8971939642038862412, guid: f706f923cc3c05c49ab300ff8992ad4f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1339529443}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f706f923cc3c05c49ab300ff8992ad4f, type: 3}
 --- !u!4 &1339529441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8111765188503217303, guid: f706f923cc3c05c49ab300ff8992ad4f, type: 3}
   m_PrefabInstance: {fileID: 1339529440}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1339529442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8971939642038862412, guid: f706f923cc3c05c49ab300ff8992ad4f, type: 3}
-  m_PrefabInstance: {fileID: 1339529440}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1339529443
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339529442}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8fff534c015b12f40b5525049fa47eba, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &1339615716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32868,7 +32767,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -35915,7 +35814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Your Inner Mind
+  npcName: 
   sentences:
   - 'You''re a snake. You have no fingers. You have no key. You have no concept of
     what  a lock is.
@@ -37326,7 +37225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Reese
+  npcName: Reese
   sentences:
   - I've got it made in the shade, baby. But I'm kind of bored. Mind if I follow
     you for a bit?
@@ -37353,6 +37252,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 1750947529}
@@ -37496,7 +37396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Your Inner Mind
+  npcName: 
   sentences:
   - 'It''s a pity snakes don''t know how to use power tools.
 
@@ -39300,7 +39200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Eliza
+  npcName: 
   sentences:
   - Thank you for rescuing me! I'll fight with you to the ends of the earth.
 --- !u!114 &1669395120
@@ -39388,6 +39288,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -39590,7 +39491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Shady Man
+  npcName: Shady Man
   sentences:
   - Ah yes. I shall retrieve these priceless artifacts for the fuhrer. If only I
     could find how to open this passageway...
@@ -39639,8 +39540,6 @@ MonoBehaviour:
   pos:
   - {fileID: 1741316025}
   - {fileID: 98029465}
-  - {fileID: 1961377035}
-  - {fileID: 1681388600}
   isPart2: 0
 --- !u!54 &1681973803
 Rigidbody:
@@ -39669,6 +39568,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1681973804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681973796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394af4e497a3f8948a7f15f7c1bc3c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos:
+  - {fileID: 1741316025}
+  - {fileID: 1961377035}
+  - {fileID: 1681388600}
+  isDead: 0
 --- !u!4 &1683031681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7539995699865502517, guid: d0a917dbf1a718c4e9619ce157d81d42, type: 3}
@@ -41120,7 +41036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1750947530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43163,7 +43079,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
-  audio: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!54 &1811506799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -49013,6 +48929,71 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 46d1ce02ff61f68468ac12678b9c3ae0, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1985408339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+  m_PrefabInstance: {fileID: 371415077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1985408340 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -1478451077635440310, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+  m_PrefabInstance: {fileID: 371415077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1985408345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985408339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Ann Achronisssm
+  sentences:
+  - Hey, wanna hear this cool song thatI wrote? It would be real friendly-like if
+    you'd give it a listen.
+  - Talk to me again if you'd like to hear it.
+--- !u!114 &1985408346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985408339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  distanceToPlayer: 0
+  activationDistance: 2
+  maxHp: 100
+  currentHp: 100
+  hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
+  attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  isAlive: 1
+  isInRange: 0
+  npcScript: {fileID: 1985408339}
+  animator: {fileID: 0}
+  interactUI: {fileID: 0}
+--- !u!114 &1985408347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985408339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4054dea8baadab14190ebea6b94264ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 0}
 --- !u!1 &1987798646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6254126710370538015, guid: f741f98cfcd839c4eb97d8f1e1db7c71, type: 3}
@@ -52780,6 +52761,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: fac16a15fd53a8547a3c90371fd95797, type: 3}
   attackSound: {fileID: 0}
   isAlive: 1
+  isInRange: 0
   npcScript: {fileID: 2124676600}
   animator: {fileID: 0}
   interactUI: {fileID: 1750947529}
@@ -52841,7 +52823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  npcName: 
   sentences: []
 --- !u!1 &2128052122 stripped
 GameObject:
@@ -54449,6 +54431,7 @@ SceneRoots:
   - {fileID: 1783117749}
   - {fileID: 1426124351}
   - {fileID: 465720390}
+  - {fileID: 2984647443374639557}
   - {fileID: 2029952232}
   - {fileID: 62412785}
   - {fileID: 371415077}
@@ -54461,7 +54444,6 @@ SceneRoots:
   - {fileID: 673855270}
   - {fileID: 183196263}
   - {fileID: 1121584185}
-  - {fileID: 2984647443374639557}
   - {fileID: 727758476}
   - {fileID: 1379361039914157568}
   - {fileID: 1786184173}

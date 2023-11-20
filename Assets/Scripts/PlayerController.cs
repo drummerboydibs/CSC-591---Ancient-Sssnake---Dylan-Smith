@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip attackSound;
     public AudioClip hitSound;
     public AudioClip deathSound;
-    public AudioSource audio;
+    public AudioSource audioSource;
 
 
     private bool isOnGround = true;
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerAnim.SetTrigger("die");
-        audio.PlayOneShot(deathSound);
+        audioSource.PlayOneShot(deathSound);
         gameController.GameOver();
     }
 

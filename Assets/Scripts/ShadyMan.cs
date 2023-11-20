@@ -12,6 +12,8 @@ public class ShadyMan : MonoBehaviour
     Animator animator;
     private int destPoint = 0;
     public bool isPart2 = false;
+    SecretPassageSwitch secretPassageSwitch;
+    ShadyManController2 smc2;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,9 @@ public class ShadyMan : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         passageWay = GameObject.Find("PassageWay1");
         animator = GetComponent<Animator>();
+        secretPassageSwitch = GameObject.Find("Secret_Passage_Torch").GetComponent<SecretPassageSwitch>();
+        smc2 = gameObject.GetComponent<ShadyManController2>();
+
 
         // Allow for continuous movement
         agent.autoBraking = false;
@@ -29,14 +34,14 @@ public class ShadyMan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (passageWay.transform.position.y < -14 && !isPart2)
+        if (secretPassageSwitch.isActivated && !isPart2)
         {
-            gameObject.AddComponent<ShadyManController2>();
             isPart2 = true;
+
         }
 
         // Pick a new destination when approaching current one.
-        if (!agent.pathPending && agent.remainingDistance < 0.5f && !isPart2)
+        if (!agent.pathPending && agent.remainingDistance < 0.2f && !isPart2)
         {
             GoToNextPoint();
         }
@@ -54,13 +59,9 @@ public class ShadyMan : MonoBehaviour
         animator.SetTrigger("Walk");
 
         // Head to next destination. Cycle to beginning if end of array.
-        if (destPoint == 0)
-        {
-            destPoint = 1;
-        } else if (destPoint == 1)
-        {
-            destPoint = 0;
-        }
-        
+        destPoint = (destPoint + 1) % pos.Length;
+
     }
+
+
 }

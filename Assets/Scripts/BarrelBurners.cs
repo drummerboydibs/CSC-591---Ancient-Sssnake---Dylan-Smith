@@ -9,7 +9,7 @@ public class BarrelBurners : MonoBehaviour
     public float distanceToTorch;
     public bool isBurning = false;
     public float activationRange = 3f;
-    AudioSource audio;
+    AudioSource audioSource;
 
     
 
@@ -19,7 +19,7 @@ public class BarrelBurners : MonoBehaviour
         torch = GameObject.Find("OldHandTorchGroup");
         fire = GameObject.Find("FireGroup");
         fire.SetActive(false);
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class BarrelBurners : MonoBehaviour
     void BurnBarrels()
     {
         fire.SetActive(true);
-        audio.Play();
+        audioSource.Play();
         StartCoroutine(Extinguish());
     }
 

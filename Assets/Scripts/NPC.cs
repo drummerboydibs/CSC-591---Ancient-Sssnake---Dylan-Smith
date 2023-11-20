@@ -13,9 +13,10 @@ public class NPC : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip attackSound;
     public bool isAlive = true;
+    public bool isInRange = false;
     public GameObject npcScript;
     
-    AudioSource audio;
+    AudioSource audioSource;
     public Animator animator;
     
     private GameObject player;
@@ -30,10 +31,10 @@ public class NPC : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         Animator animator = GetComponent<Animator>();
         
-        //dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
         interactUI = GameObject.Find("InteractButton");
         
 
@@ -43,11 +44,10 @@ public class NPC : MonoBehaviour
         distanceToPlayer = (transform.position - player.transform.position).magnitude;
         if (distanceToPlayer <= activationDistance && isAlive) 
         {
+            
             interactUI.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                TriggerDialogue();                
-            } else if (Input.GetMouseButton(1))
+            isInRange = true;
+            if (Input.GetMouseButton(1))
             {
                 GetHit();
             }
@@ -71,8 +71,12 @@ public class NPC : MonoBehaviour
     {
         currentHp -= playerController.attackPower;
         GetComponent<Animator>().SetTrigger("hit");
-        audio.clip = deathSound;
-        audio.Play();
+        if (hitSound != null)
+        {
+            audioSource.clip = hitSound;
+            audioSource.Play();
+        }
+        
         if (currentHp <= 0)
         {
             isAlive = false;
@@ -80,22 +84,26 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         if (npcScript != null)
         {
             npcScript.SetActive(false);
         }
         GetComponent<Animator>().SetTrigger("die");
-        audio.clip = deathSound;
-        audio.Play();
+        if (deathSound != null)
+        {
+            audioSource.clip = deathSound;
+            audioSource.Play();
+        }
+        
         StartCoroutine(CleanupCorpse());
     }
 
     IEnumerator CleanupCorpse()
     {
-        Destroy(this);
-        yield return new WaitForSeconds(deathSound.length);
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 
 }

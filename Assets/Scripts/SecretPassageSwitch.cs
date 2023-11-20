@@ -9,7 +9,7 @@ public class SecretPassageSwitch : MonoBehaviour
     public float distanceToPlayer;
     Animator secretPassage;
     AudioSource secretPassageAudioSource;
-    bool isActivated = false;
+    public bool isActivated = false;
     GameObject boulder;
 
 

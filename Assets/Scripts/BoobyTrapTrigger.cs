@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoobyTrapTrigger : MonoBehaviour
 {
     Rigidbody rb;
-    AudioSource audio;
+    AudioSource audioSource;
 
     public AudioClip[] audioClips;
 
@@ -13,8 +13,8 @@ public class BoobyTrapTrigger : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audio = GetComponent<AudioSource>();
-        audio.clip = audioClips[0];
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = audioClips[0];
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class BoobyTrapTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            audio.Play();
+            audioSource.Play();
             StartCoroutine(TriggerBoobyTrapCountDown(audioClips[0].length));
         }
     }
@@ -40,8 +40,8 @@ public class BoobyTrapTrigger : MonoBehaviour
 
     void TriggerBoobyTrap()
     {
-        audio.clip = audioClips[1];
-        audio.Play();
+        audioSource.clip = audioClips[1];
+        audioSource.Play();
         rb.useGravity = true;
         StartCoroutine(CleanUp());
     }
