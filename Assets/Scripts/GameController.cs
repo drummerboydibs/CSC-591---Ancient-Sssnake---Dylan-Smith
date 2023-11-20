@@ -9,13 +9,14 @@ public class GameController : MonoBehaviour
 {
     public bool isGameOver = false;
     public int currentGameLevel;
-    
+    public bool isTitleScreenActive = false;
 
     public GameObject player;
     public PlayerController playerController;
     GameObject soundLevel0;
     public GameObject soundLevel1;
     public GameObject soundLevel2;
+    public GameObject interactUI;
     
 
     GameObject levelProgresserObject;
@@ -34,6 +35,8 @@ public class GameController : MonoBehaviour
         levelProgresserObject = GameObject.Find("LevelTrigger");
         levelProgresser = levelProgresserObject.GetComponent<LevelProgresser>();
 
+        interactUI = GameObject.Find("InteractMenu");
+        //interactUI.SetActive(false);
         gameOverDialogue = GameObject.Find("GameOver");
 
         soundLevel0 = GameObject.Find("DesertSound");
@@ -41,6 +44,8 @@ public class GameController : MonoBehaviour
         soundLevel1.SetActive(false);
         soundLevel2 = GameObject.Find("PitSound");
         soundLevel2.SetActive(false);
+
+        ShowTitleScreen();
         
     }
 
@@ -147,6 +152,14 @@ public class GameController : MonoBehaviour
             soundLevel2.SetActive(true);
             
         }
+    }
+
+    void ShowTitleScreen()
+    {
+        // Show title screen.
+        // Continue button to trigger.
+        // Array of canvas probably?
+        isTitleScreenActive = false;
     }
 
 }

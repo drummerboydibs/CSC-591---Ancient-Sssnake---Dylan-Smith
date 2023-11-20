@@ -5,24 +5,26 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public Dialogue dialogue;
+    private DialogueManager dialogueManager;
+
     public float distanceToPlayer;
     public float activationDistance;
+    public bool isInRange = false;
+
     public int maxHp = 100;
     public int currentHp = 100;
     public AudioClip hitSound;
     public AudioClip deathSound;
     public AudioClip attackSound;
+    AudioSource audioSource;
+
     public bool isAlive = true;
-    public bool isInRange = false;
     public GameObject npcScript;
     
-    AudioSource audioSource;
     public Animator animator;
     
     private GameObject player;
     private PlayerController playerController;
-
-    private DialogueManager dialogueManager;
 
     public GameObject interactUI;
     
@@ -35,7 +37,8 @@ public class NPC : MonoBehaviour
         Animator animator = GetComponent<Animator>();
         
         dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
-        interactUI = GameObject.Find("InteractButton");
+        interactUI = GameObject.Find("InteractMenu");
+        dialogue = GetComponent<Dialogue>();
         
 
     }
@@ -51,6 +54,10 @@ public class NPC : MonoBehaviour
             {
                 GetHit();
             }
+        } else
+        {
+            interactUI.SetActive(false);
+            isInRange = false;
         }
 
     }

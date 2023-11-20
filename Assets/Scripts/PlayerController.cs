@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
         
         // Control the snake's motion
-        if (!gameController.isGameOver && !isInConversation)
+        if (!gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
         {
             float verticalInput = Input.GetAxis("Vertical");
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         
 
         // Enable jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameController.isGameOver && !isInConversation)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;

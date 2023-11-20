@@ -4202,13 +4202,13 @@ MonoBehaviour:
   dialogue: {fileID: 183196272}
   distanceToPlayer: 0
   activationDistance: 2
+  isInRange: 0
   maxHp: 0
   currentHp: 0
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -12853,13 +12853,13 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   distanceToPlayer: 0
   activationDistance: 1
+  isInRange: 0
   maxHp: 5
   currentHp: 5
   hitSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   deathSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   attackSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -26525,13 +26525,13 @@ MonoBehaviour:
   dialogue: {fileID: 1138873714}
   distanceToPlayer: 0
   activationDistance: 2
+  isInRange: 0
   maxHp: 0
   currentHp: 0
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -30037,6 +30037,7 @@ GameObject:
   - component: {fileID: 1282506860}
   - component: {fileID: 1282506859}
   - component: {fileID: 1282506862}
+  - component: {fileID: 1282506863}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Environment
@@ -30131,6 +30132,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1282506863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282506857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 056472461947fb84f89b98603b7bde80, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &1283418907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30661,13 +30693,13 @@ MonoBehaviour:
   dialogue: {fileID: 1308359044}
   distanceToPlayer: 0
   activationDistance: 2
+  isInRange: 0
   maxHp: 100
   currentHp: 100
   hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -33470,7 +33502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4549683258863420639, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: Chest_B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35787,7 +35819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4549683258863420639, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: Chest_A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37177,42 +37209,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8236411520625956589, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
   m_PrefabInstance: {fileID: 2029952232}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1569299140
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569299133}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36441493, y: 0.80641836, z: 1}
-  m_Center: {x: 0.0028859377, y: 0.3725548, z: 0}
---- !u!114 &1569299141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569299133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cbbbd97e3ec019449c9dbc8c60d0952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 1761688048}
-  dialogueText: {fileID: 821636354}
-  animator: {fileID: 68039021}
 --- !u!114 &1569299142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37231,7 +37227,7 @@ MonoBehaviour:
     you for a bit?
   - By the way, I think I saw a tasty little gekko wandering around the corner. I'm
     stuffed, but you look like you could use a bite.
---- !u!114 &1569299149
+--- !u!114 &1569299156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37240,22 +37236,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1569299133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
+  m_Script: {fileID: 11500000, guid: 16c74141f52740743b3cf237f3e70aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
-  distanceToPlayer: 0
-  activationDistance: 2
-  maxHp: 0
-  currentHp: 0
-  hitSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
-  deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
-  attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
-  isAlive: 1
-  isInRange: 0
-  npcScript: {fileID: 0}
-  animator: {fileID: 0}
-  interactUI: {fileID: 1750947529}
+  hasBeenTalkedTo: 0
+--- !u!195 &1569299157
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569299133}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1570629954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7174601533058687025, guid: 3e29385801011a7449637399c7a946b9, type: 3}
@@ -39282,13 +39288,13 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   distanceToPlayer: 0
   activationDistance: 0
+  isInRange: 0
   maxHp: 100
   currentHp: 100
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 0}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -41298,7 +41304,7 @@ GameObject:
   - component: {fileID: 1761688047}
   - component: {fileID: 1761688048}
   m_Layer: 5
-  m_Name: Name
+  m_Name: SpeakerName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48971,13 +48977,13 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   distanceToPlayer: 0
   activationDistance: 2
+  isInRange: 0
   maxHp: 100
   currentHp: 100
   hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 1985408339}
   animator: {fileID: 0}
   interactUI: {fileID: 0}
@@ -48993,7 +48999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4054dea8baadab14190ebea6b94264ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 9a7c061aaf73d3d48ac8203a634e77ab, type: 3}
 --- !u!1 &1987798646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6254126710370538015, guid: f741f98cfcd839c4eb97d8f1e1db7c71, type: 3}
@@ -50100,6 +50106,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5857984010876723805, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
+      propertyPath: interactUI
+      value: 
+      objectReference: {fileID: 1750947529}
     - target: {fileID: 5974093334364185577, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
       propertyPath: maxOffset
       value: 5
@@ -50110,7 +50120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6073970857016447004, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
       propertyPath: MaxDistance
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6606664286016097629, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50161,17 +50171,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8236411520625956589, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1569299140}
-    - targetCorrespondingSourceObject: {fileID: 8236411520625956589, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
-      insertIndex: -1
+      insertIndex: 6
       addedObject: {fileID: 1569299142}
     - targetCorrespondingSourceObject: {fileID: 8236411520625956589, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1569299141}
+      addedObject: {fileID: 1569299156}
     - targetCorrespondingSourceObject: {fileID: 8236411520625956589, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1569299149}
+      addedObject: {fileID: 1569299157}
   m_SourcePrefab: {fileID: 100100000, guid: d0df33f3166e06b4584de8f400c5de55, type: 3}
 --- !u!1001 &2031676524
 PrefabInstance:
@@ -50261,10 +50268,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameOver: 0
   currentGameLevel: 0
+  isTitleScreenActive: 0
   player: {fileID: 1811506796}
   playerController: {fileID: 1811506798}
   soundLevel1: {fileID: 1130922745}
   soundLevel2: {fileID: 1130922745}
+  interactUI: {fileID: 0}
 --- !u!4 &2032624067
 Transform:
   m_ObjectHideFlags: 0
@@ -52755,13 +52764,13 @@ MonoBehaviour:
   dialogue: {fileID: 2124676614}
   distanceToPlayer: 0
   activationDistance: 2
+  isInRange: 0
   maxHp: 0
   currentHp: 0
   hitSound: {fileID: 8300000, guid: fac16a15fd53a8547a3c90371fd95797, type: 3}
   deathSound: {fileID: 8300000, guid: fac16a15fd53a8547a3c90371fd95797, type: 3}
   attackSound: {fileID: 0}
   isAlive: 1
-  isInRange: 0
   npcScript: {fileID: 2124676600}
   animator: {fileID: 0}
   interactUI: {fileID: 1750947529}

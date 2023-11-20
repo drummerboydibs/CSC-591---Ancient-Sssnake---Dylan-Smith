@@ -28,8 +28,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        animator.SetBool("IsOpen", true);
-        nameText.text = dialogue.name;
+        animator.SetBool("isOpen", true);
+        nameText.text = dialogue.npcName;
 
         // Clear the queue of any previous dialogue.
         sentences.Clear();
@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour
         // Animate text appearing
         StartCoroutine(TypeSentence(sentence));
         
-        dialogueText.text = sentence;
+        //dialogueText.text = sentence;
         
         //// Allow player to skip
         //if (Input.GetKeyDown(KeyCode.E))

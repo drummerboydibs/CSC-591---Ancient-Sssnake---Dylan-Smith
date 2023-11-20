@@ -2,24 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnnAchronisssmController : MonoBehaviour
+public class Reese : MonoBehaviour
 {
     NPC npcController;
-    AudioSource audioSource;
-    public AudioClip clip;
     PlayerController playerController;
-    bool hasBeenTalkedTo = false;
+    public bool hasBeenTalkedTo = false;
 
     // Start is called before the first frame update
     void Start()
     {
         npcController = gameObject.GetComponent<NPC>();
-        audioSource = gameObject.GetComponent<AudioSource>();
         playerController = gameObject.GetComponent<PlayerController>();
-        if (clip == null)
-        {
-            Debug.Log(gameObject.name + "is missing required clip.");
-        }
     }
 
     // Update is called once per frame
@@ -28,35 +21,25 @@ public class AnnAchronisssmController : MonoBehaviour
         if (!npcController.isInRange)
         {
             return;
-        } else
+        }
+        else if (hasBeenTalkedTo)
         {
-            if (Input.GetKeyUp(KeyCode.E)) 
+            Special();
+        } else {
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 if (!hasBeenTalkedTo)
                 {
                     npcController.TriggerDialogue();
                     hasBeenTalkedTo=true;
-                } else
-                {
-                    Special();
                 }
             }
         }
-
     }
 
     void Special()
     {
-        playerController.isInConversation = true;
-        audioSource.clip = clip;
-        StartCoroutine(ForceToListen());
-    }
-
-    // Make player listen to clip, then make them your friend.
-    IEnumerator ForceToListen()
-    {
-        yield return new WaitForSeconds(clip.length);
         gameObject.AddComponent<FriendController>();
+        Destroy(this);
     }
-
 }
