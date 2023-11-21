@@ -16,12 +16,16 @@ For the fall 2023 semester, we had just over 2 weeks to make a game. At this tim
 - Interact button doesn't consistently display when near interactables. For now, use your eyes and ears!
 - The no-goodnik in the temple basement 
 - I know, the title screen and game over screens aren't there anymore.
-- Attacking things doesn't work. That unfortunately includes the bossfight. So... right now it's unwinnable.
+- Attacking things doesn't work. That unfortunately includes the bossfight. So... right now it's unwinnable. That's OK, you're all winners in my book.
+- I broke the Archaeologist / boss fight - deleted the custom texture. Time to go spelunking through GitHub repos... I also never finished his scripts.
+- Sometimes the script to turn NPCs friendly goes bonkers and the player grows to Incredible Hulk-like proportions. But only in the browser, so that's nice.
+- AI pathing using Unity's new AI navmesh system is still pretty hit or miss. In the browser build, usually miss.
 
 **To Do**
-- Fix bugs.
-- Fix/re-add title screens, level transitions, and game over screens.
 - Wire up end boss.
+- Add level transitions.
+- Squash bugs.
+- Maybe some nice background music. But the sound effects are the important part! (Maybe a config...)
 - 
 
  **Assets**
@@ -44,6 +48,7 @@ For the fall 2023 semester, we had just over 2 weeks to make a game. At this tim
 - Cat statue from Egyptian Tomb: Cat Statue (https://assetstore.unity.com/packages/3d/environments/historic/egyptian-tomb-cat-statue-119784)
 - Poem by Jake Balla of Thundergrater (https://open.spotify.com/track/100czBDXNq9JUpXyLkB8RL?si=76b8bf81d5ea4ecc)
 - Song stuck in Ann Achronissstic's head by 4 Non Blondes (https://open.spotify.com/track/0jWgAnTrNZmOGmqgvHhZEm?si=cf17a727d99a406f)
+- Most other animal sound effects were created by me. The gecko is my son!
 
 ---
 **Tutorials**
