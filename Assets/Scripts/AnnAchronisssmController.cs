@@ -49,9 +49,12 @@ public class AnnAchronisssmController : MonoBehaviour
     {
         playerController.isInConversation = true;
         gameObject.GetComponent<AnimalSoundController>().StopAllCoroutines();
+        audioSource.Stop();
         Debug.Log("Stopped AnimalSoundController coroutines.");
         audioSource.clip = clip;
         Debug.Log("Clip" + clip.name + "loaded.");
+        audioSource.volume = 1;
+        audioSource.Play();
         StartCoroutine(ForceToListen());
     }
 
@@ -61,6 +64,7 @@ public class AnnAchronisssmController : MonoBehaviour
         yield return new WaitForSeconds(clip.length);
         Debug.Log("Forcing to listen for " + clip.length + "seconds.");
         gameObject.AddComponent<FriendController>();
+        playerController.isInConversation = false;
     }
 
 }
