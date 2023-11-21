@@ -6,24 +6,29 @@ using UnityEngine;
 public class Eliza : MonoBehaviour
 {
     public GameObject barrelTrap;
-    public FriendController friendController;
+    public bool hasBeenTalkedTo = false;
+    NPC npcController;
 
     // Start is called before the first frame update
     void Start()
     {
-        barrelTrap = GameObject.Find("BarrelTrap");   
-        friendController = GetComponent<FriendController>();
+        barrelTrap = GameObject.Find("BarrelTrap");
+        npcController = GetComponent<NPC>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (barrelTrap != null)
+        if (npcController.isInRange && !hasBeenTalkedTo)
+        {
+            npcController.TriggerDialogue();
+            hasBeenTalkedTo = true;
+        } else if (barrelTrap != null)
         {
             return;
         } else
         {
-            friendController.AddComponent<FriendController>();
+            gameObject.AddComponent<FriendController>();
             Destroy(this);
         }
             

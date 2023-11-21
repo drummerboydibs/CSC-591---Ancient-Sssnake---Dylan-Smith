@@ -8,7 +8,7 @@ public class NPC : MonoBehaviour
     private DialogueManager dialogueManager;
 
     public float distanceToPlayer;
-    public float activationDistance;
+    public float activationDistance = 3;
     public bool isInRange = false;
 
     public int maxHp = 100;
@@ -17,6 +17,7 @@ public class NPC : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip attackSound;
     AudioSource audioSource;
+    public GameController gameController;
 
     public bool isAlive = true;
     public GameObject npcScript;
@@ -26,9 +27,7 @@ public class NPC : MonoBehaviour
     private GameObject player;
     private PlayerController playerController;
 
-    public GameObject interactUI;
     
-
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -37,8 +36,8 @@ public class NPC : MonoBehaviour
         Animator animator = GetComponent<Animator>();
         
         dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
-        interactUI = GameObject.Find("InteractMenu");
         dialogue = GetComponent<Dialogue>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         
 
     }
@@ -47,16 +46,17 @@ public class NPC : MonoBehaviour
         distanceToPlayer = (transform.position - player.transform.position).magnitude;
         if (distanceToPlayer <= activationDistance && isAlive) 
         {
-            
-            interactUI.SetActive(true);
+            gameController.interactUI.SetActive(true);
             isInRange = true;
             if (Input.GetMouseButton(1))
             {
+                Debug.Log("Registered mouse button within range.");
                 GetHit();
+
             }
         } else
         {
-            interactUI.SetActive(false);
+            gameController.interactUI.SetActive(false);
             isInRange = false;
         }
 
@@ -64,7 +64,7 @@ public class NPC : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        interactUI.SetActive(false);
+        gameController.interactUI.SetActive(false);
         Debug.Log("Interact.UI set to false.");
         playerController.isInConversation = true;
         Debug.Log("IsInConversation bool set to true.");
@@ -76,8 +76,9 @@ public class NPC : MonoBehaviour
 
     void GetHit()
     {
+        Debug.Log("In GetHit()");
         currentHp -= playerController.attackPower;
-        GetComponent<Animator>().SetTrigger("hit");
+        animator.SetTrigger("hit");
         if (hitSound != null)
         {
             audioSource.clip = hitSound;
@@ -93,11 +94,12 @@ public class NPC : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("In Die()");
         if (npcScript != null)
         {
             npcScript.SetActive(false);
         }
-        GetComponent<Animator>().SetTrigger("die");
+        animator.SetTrigger("die");
         if (deathSound != null)
         {
             audioSource.clip = deathSound;

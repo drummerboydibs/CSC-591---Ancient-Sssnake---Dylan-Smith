@@ -304,6 +304,53 @@ MonoBehaviour:
   - Do you have any gold I could have, dahling? I do love something shiny.
   - I hear some of the torches may unearth some treasures. That no-goodnick hasn't
     been smart enough to figure that out yet.
+--- !u!195 &5923169
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923155}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &5923170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  distanceToPlayer: 0
+  activationDistance: 3
+  isInRange: 0
+  maxHp: 100
+  currentHp: 100
+  hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
+  attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  gameController: {fileID: 0}
+  isAlive: 1
+  npcScript: {fileID: 5923155}
+  animator: {fileID: 0}
 --- !u!1001 &12796411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1387,6 +1434,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6443349666302298225, guid: a55680844f75cc542bad5e941033fa90, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1308359052}
+    - targetCorrespondingSourceObject: {fileID: 6443349666302298225, guid: a55680844f75cc542bad5e941033fa90, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1308359059}
   m_SourcePrefab: {fileID: 100100000, guid: a55680844f75cc542bad5e941033fa90, type: 3}
 --- !u!1001 &64728434
 PrefabInstance:
@@ -3343,13 +3393,20 @@ PrefabInstance:
       propertyPath: animalSound.Array.data[3]
       value: 
       objectReference: {fileID: 8300000, guid: 532df19668e3fd64bb44ef283ee52277, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3517869378111042343, guid: dfb3cd4f4954c4e48b175940e8385a5d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2940809243887592371, guid: dfb3cd4f4954c4e48b175940e8385a5d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5923162}
+    - targetCorrespondingSourceObject: {fileID: 2940809243887592371, guid: dfb3cd4f4954c4e48b175940e8385a5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5923170}
+    - targetCorrespondingSourceObject: {fileID: 2940809243887592371, guid: dfb3cd4f4954c4e48b175940e8385a5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5923169}
   m_SourcePrefab: {fileID: 100100000, guid: dfb3cd4f4954c4e48b175940e8385a5d, type: 3}
 --- !u!1001 &130105416
 PrefabInstance:
@@ -3700,9 +3757,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6443349666302298225, guid: a55680844f75cc542bad5e941033fa90, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1669395121}
-    - targetCorrespondingSourceObject: {fileID: 6443349666302298225, guid: a55680844f75cc542bad5e941033fa90, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1669395120}
     - targetCorrespondingSourceObject: {fileID: 6443349666302298225, guid: a55680844f75cc542bad5e941033fa90, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1669395122}
@@ -4074,27 +4128,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c157c1e62b52d43aac19d565dec346, type: 3}
---- !u!1 &165821977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4655328904874753239, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-  m_PrefabInstance: {fileID: 459799878}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &165821984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165821977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcName: Angus
-  sentences:
-  - Humans are gross. If you get rid of that one down there I'll hang out with you
-    laddy.
 --- !u!4 &177204999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1400167785646559077, guid: b625fb29a6cf6f14ca39e1f32b0554f8, type: 3}
@@ -4181,6 +4214,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8715111457578993085, guid: 6caa3b8a8bd22214293cead6fdc77a9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 183196272}
+    - targetCorrespondingSourceObject: {fileID: 8715111457578993085, guid: 6caa3b8a8bd22214293cead6fdc77a9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 183196278}
   m_SourcePrefab: {fileID: 100100000, guid: 6caa3b8a8bd22214293cead6fdc77a9a, type: 3}
 --- !u!1 &183196264 stripped
 GameObject:
@@ -4203,15 +4239,15 @@ MonoBehaviour:
   distanceToPlayer: 0
   activationDistance: 2
   isInRange: 0
-  maxHp: 0
-  currentHp: 0
-  hitSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  attackSound: {fileID: 0}
+  maxHp: 100
+  currentHp: 100
+  hitSound: {fileID: 8300000, guid: 03541f8e339b19c459686bd46bc8bc42, type: 3}
+  deathSound: {fileID: 8300000, guid: b9b174167de608e4a8d11aa37c53d992, type: 3}
+  attackSound: {fileID: 8300000, guid: 58155c17153e41447bb7df0afb9ae1e4, type: 3}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 0}
-  animator: {fileID: 0}
-  interactUI: {fileID: 0}
+  animator: {fileID: 183196275}
 --- !u!114 &183196271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4239,10 +4275,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: ChunkyMonkey
   sentences:
   - Ha! Look at this pipsqueak! You can't eat me!
-  - Try coming back when you're bigger than the things I pick out of my toes.
+  - Try coming back when you're bigger than the things I pick out of my toes. It
+    would take like 4 of you to take me down!
+--- !u!95 &183196275 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 210305951042276850, guid: 6caa3b8a8bd22214293cead6fdc77a9a, type: 3}
+  m_PrefabInstance: {fileID: 183196263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &183196278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183196264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565d52e9bb408ec40acbd578dfb059a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &183498569 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7174601533058687025, guid: 3e29385801011a7449637399c7a946b9, type: 3}
@@ -8388,6 +8442,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1985408346}
+    - targetCorrespondingSourceObject: {fileID: 1168321716048646692, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985408352}
   m_SourcePrefab: {fileID: 100100000, guid: 1f95ad31295d5d942827da6b0e2743ee, type: 3}
 --- !u!1 &372393438 stripped
 GameObject:
@@ -9797,33 +9854,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7185881068294034634, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821979891979926804, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-      propertyPath: animalSound.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821979891979926804, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-      propertyPath: animalSound.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 717211c2948201243984c23c904d392e, type: 3}
-    - target: {fileID: 7821979891979926804, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-      propertyPath: animalSound.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 9bc1e8148768b7f4fad19378ab1b7161, type: 3}
-    - target: {fileID: 7821979891979926804, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-      propertyPath: animalSound.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 532df19668e3fd64bb44ef283ee52277, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4655328904874753239, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 165821984}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f68228e8a6399d43a5caf6b1b156731, type: 3}
 --- !u!1001 &459933438
 PrefabInstance:
@@ -12850,19 +12884,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 584706448}
   distanceToPlayer: 0
-  activationDistance: 1
+  activationDistance: 2
   isInRange: 0
   maxHp: 5
   currentHp: 5
   hitSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   deathSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   attackSound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 0}
-  animator: {fileID: 0}
-  interactUI: {fileID: 0}
+  animator: {fileID: 584706444}
+--- !u!95 &584706444 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4322279411520858006, guid: dbbb95e02116f294faa9bc0e5acbdb25, type: 3}
+  m_PrefabInstance: {fileID: 673855270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &584706447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584706435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e950acb615f0a54f86a8427edd9f91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasBeenTalkedTo: 0
+--- !u!114 &584706448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584706435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Gabby
+  sentences:
+  - That guy behind this temple tried to eat me! Can you imagine? How rude!
 --- !u!4 &585794753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7145365836086554178, guid: aad00e4bd50f4b04d980b432c247207d, type: 3}
@@ -14962,6 +15029,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1402573839196903176, guid: dbbb95e02116f294faa9bc0e5acbdb25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 584706441}
+    - targetCorrespondingSourceObject: {fileID: 1402573839196903176, guid: dbbb95e02116f294faa9bc0e5acbdb25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 584706448}
+    - targetCorrespondingSourceObject: {fileID: 1402573839196903176, guid: dbbb95e02116f294faa9bc0e5acbdb25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 584706447}
   m_SourcePrefab: {fileID: 100100000, guid: dbbb95e02116f294faa9bc0e5acbdb25, type: 3}
 --- !u!1001 &675932372
 PrefabInstance:
@@ -23999,6 +24072,33 @@ Transform:
   - {fileID: 1135747605}
   m_Father: {fileID: 1977404868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005852079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832984202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8012ac19fb3c7e040993f900ef542a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1005852080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832984202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Your Inner Mind
+  sentences:
+  - Poor fella died all alone. He must have been close to what he was looking for.
 --- !u!1001 &1006795967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24429,7 +24529,13 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8935066204742433684, guid: c58829182f121f24aa5317a22823ca57, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7590453392888686472, guid: c58829182f121f24aa5317a22823ca57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985737680}
+    - targetCorrespondingSourceObject: {fileID: 7590453392888686472, guid: c58829182f121f24aa5317a22823ca57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985737679}
   m_SourcePrefab: {fileID: 100100000, guid: c58829182f121f24aa5317a22823ca57, type: 3}
 --- !u!1 &1025424581
 GameObject:
@@ -25994,6 +26100,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6788538757290762323, guid: ad4137f595ec8e2449cacca9df7d3735, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1138873715}
+    - targetCorrespondingSourceObject: {fileID: 6788538757290762323, guid: ad4137f595ec8e2449cacca9df7d3735, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1138873722}
   m_SourcePrefab: {fileID: 100100000, guid: ad4137f595ec8e2449cacca9df7d3735, type: 3}
 --- !u!1001 &1121833835
 PrefabInstance:
@@ -26507,9 +26616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Jack
   sentences:
-  - Please don't eat me!
+  - Please don't eat me! I'll come with you if you don't eat me!
 --- !u!114 &1138873715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26531,10 +26640,25 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 0}
   animator: {fileID: 0}
-  interactUI: {fileID: 0}
+--- !u!114 &1138873722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138873707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32011a2c7c0cf64194339d818681e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasBeenTalkedTo: 0
+  isBeingCarried: 0
+  distanceToCharlie: 0
 --- !u!4 &1141184156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3506536747847612706, guid: 1505db5635194e64c9b093bc10295347, type: 3}
@@ -30692,17 +30816,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 1308359044}
   distanceToPlayer: 0
-  activationDistance: 2
+  activationDistance: 3
   isInRange: 0
   maxHp: 100
   currentHp: 100
   hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 0}
   animator: {fileID: 0}
-  interactUI: {fileID: 0}
 --- !u!114 &1308359052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30715,7 +30839,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef149b7aae25903479b9517d9a31df18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendController: {fileID: 0}
+  hasBeenTalkedTo: 0
+--- !u!195 &1308359059
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308359036}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &1310129321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33228,6 +33374,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8898889826273233713, guid: bddd043cadfc20143b73c9dbed8fd7c9, type: 3}
   m_PrefabInstance: {fileID: 1403457132}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1406066072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+  m_PrefabInstance: {fileID: 1465700600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1406066078
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406066072}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1406066079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406066072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Tommy
+  sentences:
+  - Please don't talk to Timmy. He's looking for a friend to listen to his poetry.
+  - Also he keeps saying he swears there's something weird about some of these torches.
+    I think he's losing it.
+--- !u!114 &1406066080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406066072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026068edd15f3a042bd5fc9b8ecc776b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1406066081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406066072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  distanceToPlayer: 0
+  activationDistance: 2
+  isInRange: 0
+  maxHp: 100
+  currentHp: 100
+  hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
+  attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  gameController: {fileID: 0}
+  isAlive: 1
+  npcScript: {fileID: 1406066072}
+  animator: {fileID: 0}
 --- !u!1001 &1410416546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33511,6 +33738,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4549683258863420639, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1589404946}
+    - targetCorrespondingSourceObject: {fileID: 4549683258863420639, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1589404950}
   m_SourcePrefab: {fileID: 100100000, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
 --- !u!4 &1419341483 stripped
 Transform:
@@ -34147,6 +34377,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444619503}
   m_CullTransparentMesh: 1
+--- !u!1 &1445237569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+  m_PrefabInstance: {fileID: 1945475736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1445237570 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2006245902415200765, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+  m_PrefabInstance: {fileID: 1945475736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1445237575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445237569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  distanceToPlayer: 0
+  activationDistance: 2
+  isInRange: 0
+  maxHp: 100
+  currentHp: 100
+  hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
+  attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  gameController: {fileID: 0}
+  isAlive: 1
+  npcScript: {fileID: 1445237569}
+  animator: {fileID: 0}
+--- !u!195 &1445237576
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445237569}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1445237577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445237569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Timmy
+  sentences:
+  - Hey, check it out, friendo! I wrote a poem! It goes a little something like this...
+  - 'Sunlight come wash it away.
+
+    All my dreams seem to fade.
+
+    I see my fears
+    and they see you.
+
+    Keep looking and you''ll see them too.'
+  - 'So let it fall, let it fall like rain
+
+    Beneath the sky again
+
+    Let it
+    fall, let it fall on you.
+
+    Rest the weight of the world on you.'
+  - 'It all falls on you.
+
+    It all falls on you.'
+  - Hey, thanks for listening! Just chat again if you want to hang out with me and
+    my brother over here!
+--- !u!114 &1445237578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445237569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175dc279865d76948948d387c0a9273b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1446516151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34853,7 +35188,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406066078}
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406066079}
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406066080}
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406066081}
   m_SourcePrefab: {fileID: 100100000, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
 --- !u!1001 &1468448900
 PrefabInstance:
@@ -35828,6 +36175,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4549683258863420639, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1499379052}
+    - targetCorrespondingSourceObject: {fileID: 4549683258863420639, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1499379057}
   m_SourcePrefab: {fileID: 100100000, guid: b41a5645eca4ee84ca23a0ebe65057b7, type: 3}
 --- !u!1 &1499379051 stripped
 GameObject:
@@ -35846,13 +36196,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Your Inner Thoughts
   sentences:
-  - 'You''re a snake. You have no fingers. You have no key. You have no concept of
+  - You're a snake. You have no fingers. You have no key. You have no concept of
     what  a lock is.
-
-
-    This treasure shall remain a mystery to you.'
+  - This treasure shall remain a mystery to you.
+--- !u!114 &1499379057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499379051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8012ac19fb3c7e040993f900ef542a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1500067912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37402,13 +37762,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Your Inner Mind
   sentences:
-  - 'It''s a pity snakes don''t know how to use power tools.
-
-
-    Some of these
-    torches look a bit off though...'
+  - It's a pity snakes don't know how to use power tools. Or what a power tool is.
+  - Some of these torches look a bit off though...
+--- !u!114 &1589404950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589404942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8012ac19fb3c7e040993f900ef542a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1591708919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39206,37 +39575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Eliza
   sentences:
-  - Thank you for rescuing me! I'll fight with you to the ends of the earth.
---- !u!114 &1669395120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669395113}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f811ce04c0f76488d1553020c77320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 20
-  baseSpeed: 0
-  turnSpeed: 120
-  attackPower: 10
-  rb: {fileID: 0}
-  player: {fileID: 0}
-  playerController: {fileID: 0}
-  enemy: {fileID: 0}
-  enemyController: {fileID: 0}
-  gameController: {fileID: 0}
-  attackRange: 1.5
-  distanceToPlayer: 0
-  distanceToEnemy: 0
-  isAggroed: 0
-  timeSinceLastAttack: 0
-  attackDelay: 1
+  - HELP! I'm trapped! Won't some friend please come help?!
 --- !u!114 &1669395121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39250,7 +39591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrelTrap: {fileID: 0}
-  friendController: {fileID: 0}
+  hasBeenTalkedTo: 0
 --- !u!195 &1669395122
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -39285,19 +39626,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77062b04b1d5c6b4e819829bd0768e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 1669395119}
   distanceToPlayer: 0
-  activationDistance: 0
+  activationDistance: 10
   isInRange: 0
   maxHp: 100
   currentHp: 100
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
   attackSound: {fileID: 0}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 0}
   animator: {fileID: 0}
-  interactUI: {fileID: 0}
 --- !u!1001 &1672739103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43881,6 +44222,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4807378906527954953, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 623017891}
+    - targetCorrespondingSourceObject: {fileID: 4807378906527954953, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005852080}
+    - targetCorrespondingSourceObject: {fileID: 4807378906527954953, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005852079}
     - targetCorrespondingSourceObject: {fileID: 7152918963728015159, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1951897333}
@@ -47499,6 +47846,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4694605736574483715, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      propertyPath: animalSoundPlayer
+      value: 
+      objectReference: {fileID: 1445237570}
+    - target: {fileID: -4694605736574483715, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
       propertyPath: animalSound.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -47569,7 +47920,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1445237576}
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1445237575}
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1445237578}
+    - targetCorrespondingSourceObject: {fileID: 6411180262598798781, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1445237577}
   m_SourcePrefab: {fileID: 100100000, guid: d4b9ba7576a25f94fbfdb7e38047897f, type: 3}
 --- !u!1 &1945815935
 GameObject:
@@ -48959,7 +49322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Ann Achronisssm
   sentences:
-  - Hey, wanna hear this cool song thatI wrote? It would be real friendly-like if
+  - Hey, wanna hear this cool song that I wrote? It would be real friendly-like if
     you'd give it a listen.
   - Talk to me again if you'd like to hear it.
 --- !u!114 &1985408346
@@ -48983,10 +49346,10 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
   deathSound: {fileID: 8300000, guid: 9371c27b4cce15d4aa4929f07ac1c519, type: 3}
   attackSound: {fileID: 8300000, guid: 3ac802e252e3b914998166fab34b4fe6, type: 3}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 1985408339}
   animator: {fileID: 0}
-  interactUI: {fileID: 0}
 --- !u!114 &1985408347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49000,6 +49363,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 9a7c061aaf73d3d48ac8203a634e77ab, type: 3}
+--- !u!114 &1985408352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985408339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
+--- !u!1 &1985737676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7590453392888686472, guid: c58829182f121f24aa5317a22823ca57, type: 3}
+  m_PrefabInstance: {fileID: 1022100084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1985737679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985737676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8012ac19fb3c7e040993f900ef542a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1985737680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985737676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Bougie
+  sentences:
+  - That's not very shiny. I think you can do better, dahling.
+  - That ne-er-do-well over here keeps babbling something about the switches. Maybe
+    try that?
 --- !u!1 &1987798646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6254126710370538015, guid: f741f98cfcd839c4eb97d8f1e1db7c71, type: 3}
@@ -50274,6 +50702,7 @@ MonoBehaviour:
   soundLevel1: {fileID: 1130922745}
   soundLevel2: {fileID: 1130922745}
   interactUI: {fileID: 0}
+  playerLevel: 1
 --- !u!4 &2032624067
 Transform:
   m_ObjectHideFlags: 0
@@ -51199,7 +51628,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9a7c061aaf73d3d48ac8203a634e77ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b9b174167de608e4a8d11aa37c53d992, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -51210,7 +51639,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -52770,10 +53199,10 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: fac16a15fd53a8547a3c90371fd95797, type: 3}
   deathSound: {fileID: 8300000, guid: fac16a15fd53a8547a3c90371fd95797, type: 3}
   attackSound: {fileID: 0}
+  gameController: {fileID: 0}
   isAlive: 1
   npcScript: {fileID: 2124676600}
-  animator: {fileID: 0}
-  interactUI: {fileID: 1750947529}
+  animator: {fileID: 2124676617}
 --- !u!114 &2124676607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52793,6 +53222,7 @@ MonoBehaviour:
   - {fileID: 268304051}
   - {fileID: 271130038}
   speed: 2
+  hasBeenTalkedTo: 0
 --- !u!195 &2124676608
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -52832,8 +53262,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4334d137ff1704b9144fec019c7501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
-  sentences: []
+  npcName: Marny
+  sentences:
+  - Being delicious is stressful!
+--- !u!95 &2124676617 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 564277557631118406, guid: 843065da0126c7b48b9ab0ab6eb66d28, type: 3}
+  m_PrefabInstance: {fileID: 290365372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2128052122 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7174601533058687025, guid: 3e29385801011a7449637399c7a946b9, type: 3}

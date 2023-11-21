@@ -5,25 +5,36 @@ using UnityEngine;
 
 public class Charlie : MonoBehaviour
 {
-    Dialogue dialogue;
-    public FriendController friendController;
-
+    NPC npcController;
+    public bool hasBeenTalkedTo;
+    
     // Start is called before the first frame update
     void Start()
     {
-        dialogue = GetComponent<Dialogue>();
-        friendController = GetComponent<FriendController>();
+        npcController = GetComponent<NPC>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dialogue.sentences != null)
+        if (!npcController.isInRange)
         {
             return;
-        } else
+        }
+        else if (!npcController.isAlive)
         {
-            Destroy(this);
+            return;
+        }
+        else
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                if (!hasBeenTalkedTo)
+                {
+                    npcController.TriggerDialogue();
+                    hasBeenTalkedTo = true;
+                }
+            }
         }
     }
 }

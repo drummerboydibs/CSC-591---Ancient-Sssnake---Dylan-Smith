@@ -10,20 +10,18 @@ public class Muskrat : MonoBehaviour
     public float speed;
     private NavMeshAgent agent;
     private int destPoint = 0;
+    public bool hasBeenTalkedTo = false;
+    GameController gameController;
     NPC npc;
-
-    float distanceToGoal;
-
-    Animator anim;
 
     
         
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         npc = GetComponent<NPC>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         // Allow for continuous movement
         agent.autoBraking = false;
@@ -42,7 +40,20 @@ public class Muskrat : MonoBehaviour
             GoToNextPoint();
         }
 
-    }
+        if (!npc.isInRange)
+        {
+            return;
+        } else if (Input.GetKeyUp(KeyCode.E) && !hasBeenTalkedTo)
+        {
+            npc.TriggerDialogue();
+            hasBeenTalkedTo = true;
+        } else if (Input.GetKeyUp(KeyCode.E) && hasBeenTalkedTo) 
+            {
+                TriggerInteraction();
+            }
+        }
+
+
 
     void GoToNextPoint()
     {
@@ -60,6 +71,8 @@ public class Muskrat : MonoBehaviour
 
     void TriggerInteraction()
     {
+        StopAllCoroutines();
+        gameController.LevelUp();
         npc.Die();
     }
 

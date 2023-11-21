@@ -16,11 +16,6 @@ public class AnimalSoundController : MonoBehaviour
         StartCoroutine(PlayAudio(1));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     IEnumerator PlayAudio(float offset)
     {

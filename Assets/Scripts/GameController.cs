@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public bool isGameOver = false;
-    public int currentGameLevel;
+    public int currentGameLevel = 0;
     public bool isTitleScreenActive = false;
 
     public GameObject player;
@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public GameObject soundLevel1;
     public GameObject soundLevel2;
     public GameObject interactUI;
+    public int playerLevel = 1;
     
 
     GameObject levelProgresserObject;
@@ -36,7 +37,7 @@ public class GameController : MonoBehaviour
         levelProgresser = levelProgresserObject.GetComponent<LevelProgresser>();
 
         interactUI = GameObject.Find("InteractMenu");
-        //interactUI.SetActive(false);
+        interactUI.SetActive(false);
         gameOverDialogue = GameObject.Find("GameOver");
 
         soundLevel0 = GameObject.Find("DesertSound");
@@ -71,17 +72,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void levelUp(int currentGameLevel)
+    public void LevelUp()
     {
-        
-        if (currentGameLevel == 0)
-        {
-            playerController.LevelUp();
-        } else {
-            // increase the snakes' size and bite power
-            playerController.LevelUp();
-
-        }
+        // increase the snakes' size and bite power
+        playerController.LevelUp();
+        playerLevel++;
     }
 
     public void CompleteLevel()
@@ -96,7 +91,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    void addAlly(string allyName)
+    void AddAlly(string allyName)
     {
         // add allies to an array
         // this will be checked 
@@ -106,7 +101,7 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
-        gameOverDialogue.gameObject.SetActive(true);
+        gameOverDialogue.SetActive(true);
     }
 
     // Restart game by reloading the scene

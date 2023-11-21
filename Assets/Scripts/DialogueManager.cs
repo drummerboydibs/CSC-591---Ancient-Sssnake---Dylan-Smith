@@ -59,16 +59,6 @@ public class DialogueManager : MonoBehaviour
         // Animate text appearing
         StartCoroutine(TypeSentence(sentence));
         
-        //dialogueText.text = sentence;
-        
-        //// Allow player to skip
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    DisplayNextSentence();
-        //} else if (Input.GetKeyDown(KeyCode.Escape)) 
-        //{
-        //    EndDialogue();
-        //}
     }
 
     void EndDialogue()

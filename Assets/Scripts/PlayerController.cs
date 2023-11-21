@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip deathSound;
     public AudioSource audioSource;
-
+    
 
     private bool isOnGround = true;
     private Animator playerAnim;
@@ -117,7 +117,8 @@ public class PlayerController : MonoBehaviour
         currentHP += 10;
         baseSpeed += .5f;
         attackPower += 5;
-        transform.localScale += sizeChange;
+        jumpForce += 1;
+        playerSnake.transform.localScale += sizeChange;
 
     }
 

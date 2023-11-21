@@ -15,7 +15,7 @@ public class AnnAchronisssmController : MonoBehaviour
     {
         npcController = gameObject.GetComponent<NPC>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        playerController = gameObject.GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         if (clip == null)
         {
             Debug.Log(gameObject.name + "is missing required clip.");
@@ -48,7 +48,10 @@ public class AnnAchronisssmController : MonoBehaviour
     void Special()
     {
         playerController.isInConversation = true;
+        gameObject.GetComponent<AnimalSoundController>().StopAllCoroutines();
+        Debug.Log("Stopped AnimalSoundController coroutines.");
         audioSource.clip = clip;
+        Debug.Log("Clip" + clip.name + "loaded.");
         StartCoroutine(ForceToListen());
     }
 
@@ -56,6 +59,7 @@ public class AnnAchronisssmController : MonoBehaviour
     IEnumerator ForceToListen()
     {
         yield return new WaitForSeconds(clip.length);
+        Debug.Log("Forcing to listen for " + clip.length + "seconds.");
         gameObject.AddComponent<FriendController>();
     }
 

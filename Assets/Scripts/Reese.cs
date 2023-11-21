@@ -5,20 +5,22 @@ using UnityEngine;
 public class Reese : MonoBehaviour
 {
     NPC npcController;
-    PlayerController playerController;
     public bool hasBeenTalkedTo = false;
 
     // Start is called before the first frame update
     void Start()
     {
         npcController = gameObject.GetComponent<NPC>();
-        playerController = gameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!npcController.isInRange)
+        {
+            return;
+        }
+        else if (!npcController.isAlive)
         {
             return;
         }
@@ -40,6 +42,7 @@ public class Reese : MonoBehaviour
     void Special()
     {
         gameObject.AddComponent<FriendController>();
+        npcController.isAlive = false;
         Destroy(this);
     }
 }

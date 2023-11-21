@@ -33,15 +33,21 @@ public class FriendController : MonoBehaviour
     {
         anim = GetComponent<Animator>();   
         rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
+        if (gameObject.GetComponent<NavMeshAgent>() != null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+        else Debug.Log("No NavMeshAgent loaded on " + gameObject.name);
+        
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         enemy = GameObject.Find("Archaeologist");
         enemyController = enemy.GetComponent<EnemyController>();
         npc = GetComponent<NPC>();
-        
+
         // Player levels up every time they make a friend!
         playerController.LevelUp();
+        Debug.Log("Levelled up.");
         
         
         // Reduce sound / chatter when an animal becomes your friend
@@ -95,6 +101,7 @@ public class FriendController : MonoBehaviour
 
     void Attack()
     {
+        Debug.Log("Entered FriendController.Attack().");
         anim.SetTrigger("attack");
         enemyController.currentHp -= attackPower;
         timeSinceLastAttack = 0;
@@ -102,6 +109,7 @@ public class FriendController : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("Entered FriendController.Die()");
         anim.SetTrigger("die");
     }
 
