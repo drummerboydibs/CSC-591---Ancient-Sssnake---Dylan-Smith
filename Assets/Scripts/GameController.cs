@@ -11,15 +11,19 @@ public class GameController : MonoBehaviour
 {
     public bool isGameOver = false;
     public int currentGameLevel = 0;
-    public bool isTitleScreenActive = false;
+    public bool isTitleScreenActive = true;
+    GameObject titleCam;
+    GameObject mainCam;
 
     public GameObject player;
+    
     public PlayerController playerController;
     GameObject soundLevel0;
     public GameObject soundLevel1;
     public GameObject soundLevel2;
     public GameObject interactUI;
     public int playerLevel = 1;
+    GameObject titleScreen;
     
 
     GameObject levelProgresserObject;
@@ -31,8 +35,15 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        titleScreen = GameObject.Find("TitleScreens");
+        titleCam = GameObject.Find("TitleCamera");
+        titleCam.SetActive(true);
         player = GameObject.Find("Player");
+        mainCam = GameObject.Find("Main Camera");
+        mainCam.SetActive(false);
         playerController = player.GetComponent<PlayerController>();
+        
+                
         currentGameLevel = 0;
 
         levelProgresserObject = GameObject.Find("LevelTrigger");
@@ -47,8 +58,6 @@ public class GameController : MonoBehaviour
         soundLevel1.SetActive(false);
         soundLevel2 = GameObject.Find("PitSound");
         soundLevel2.SetActive(false);
-
-        ShowTitleScreen();
         
     }
 
@@ -151,12 +160,17 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void ShowTitleScreen()
+    public void StartGame()
     {
-        // Show title screen.
+        Destroy(titleScreen);
+
         // Continue button to trigger.
         // Array of canvas probably?
+        
+        mainCam.SetActive(true);
+        GameObject.Find("TitleScreens").SetActive(false);
         isTitleScreenActive = false;
+        return;
     }
 
 }

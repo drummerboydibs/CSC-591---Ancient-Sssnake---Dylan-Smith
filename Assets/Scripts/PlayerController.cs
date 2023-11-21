@@ -44,51 +44,56 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeSinceLastAttack += Time.deltaTime;
-        
-        // Control the snake's motion
-        if (!gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
+        if (!gameController.isTitleScreenActive)
         {
-            float verticalInput = Input.GetAxis("Vertical");
-            float horizontalInput = Input.GetAxis("Horizontal");
-            transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
-            transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
-            if (verticalInput == 0 && isOnGround == true)
+            timeSinceLastAttack += Time.deltaTime;
+
+            // Control the snake's motion
+            if (!gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
             {
-                playerAnim.SetTrigger("stop");
-            } else if (verticalInput != 0 && isOnGround == true)
-            {
-                playerAnim.SetTrigger("walk");
+                float verticalInput = Input.GetAxis("Vertical");
+                float horizontalInput = Input.GetAxis("Horizontal");
+                transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
+                transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
+                if (verticalInput == 0 && isOnGround == true)
+                {
+                    playerAnim.SetTrigger("stop");
+                }
+                else if (verticalInput != 0 && isOnGround == true)
+                {
+                    playerAnim.SetTrigger("walk");
+                }
+
             }
-            
+
+
+            // Enable jumping
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isOnGround = false;
+                playerAnim.SetTrigger("jump");
+            }
+
+            // Rescue if player falls through world
+            if (transform.position.y < 0)
+            {
+                transform.position = new Vector3(transform.position.x, 1, transform.position.y);
+            }
+
+            // Death animation
+            if (currentHP == 0)
+            {
+                Die();
+            }
+
+            // Enable attack
+            if (Input.GetMouseButtonDown(0) && timeSinceLastAttack > attackDelay)
+            {
+                Attack();
+            }
         }
         
-
-        // Enable jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
-            playerAnim.SetTrigger("jump");
-        }
-
-        // Rescue if player falls through world
-        if (transform.position.y < 0)
-        {
-            transform.position = new Vector3(transform.position.x, 1, transform.position.y);            
-        }
-
-        // Death animation
-        if (currentHP == 0)
-        {
-            Die();
-        }
-
-        // Enable attack
-        if (Input.GetMouseButtonDown(0) && timeSinceLastAttack > attackDelay)
-        {
-            Attack();
-        }
 
     }
 

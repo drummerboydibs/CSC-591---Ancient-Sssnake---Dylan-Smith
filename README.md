@@ -1,4 +1,4 @@
-# Ancient-Sssnake
+# Ancient-Sssnakes
  ## Dylan Smith's submission for University of Michigan-Flint's 2023 Game Jam for course CSC 591
 For the fall 2023 semester, we had just over 2 weeks to make a game. At this time, this is the most complex thing I've designed or coded.
 
@@ -19,7 +19,10 @@ For the fall 2023 semester, we had just over 2 weeks to make a game. At this tim
 - Attacking things doesn't work. That unfortunately includes the bossfight. So... right now it's unwinnable.
 
 **To Do**
-- Fix combat
+- Fix bugs.
+- Fix/re-add title screens, level transitions, and game over screens.
+- Wire up end boss.
+- 
 
  **Assets**
 - Snake and animals and their animations from Quirky Series - FREE Animals Pack (https://assetstore.unity.com/packages/3d/characters/animals/quirky-series-free-animals-pack-178235)
