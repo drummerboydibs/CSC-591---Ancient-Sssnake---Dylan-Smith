@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     public GameObject interactUI;
     public int playerLevel = 1;
     GameObject titleScreen;
+    GameObject gameOverScreen;
     
 
     GameObject levelProgresserObject;
@@ -36,6 +37,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         titleScreen = GameObject.Find("TitleScreens");
+        gameOverScreen = GameObject.Find("GameOverScreen");
+        gameOverScreen.SetActive(false);
         titleCam = GameObject.Find("TitleCamera");
         titleCam.SetActive(true);
         player = GameObject.Find("Player");
@@ -51,8 +54,7 @@ public class GameController : MonoBehaviour
 
         interactUI = GameObject.Find("InteractMenu");
         interactUI.SetActive(false);
-        gameOverDialogue = GameObject.Find("GameOver");
-
+        
         soundLevel0 = GameObject.Find("DesertSound");
         soundLevel1 = GameObject.Find("TempleSound");
         soundLevel1.SetActive(false);
@@ -112,7 +114,7 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
-        gameOverDialogue.SetActive(true);
+        gameOverScreen.SetActive(true);
     }
 
     // Restart game by reloading the scene

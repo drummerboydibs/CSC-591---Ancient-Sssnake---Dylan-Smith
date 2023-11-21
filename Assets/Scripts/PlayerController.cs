@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = playerSnake.GetComponent<Animator>();
         gameControllerObject = GameObject.Find("GameController");
         gameController = gameControllerObject.GetComponent<GameController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -130,7 +131,8 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerAnim.SetTrigger("die");
-        audioSource.PlayOneShot(deathSound);
+        audioSource.clip = deathSound;
+        audioSource.Play();
         gameController.GameOver();
     }
 
