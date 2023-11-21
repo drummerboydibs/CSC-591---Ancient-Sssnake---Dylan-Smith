@@ -9,10 +9,17 @@ For the fall 2023 semester, we had just over 2 weeks to make a game. At this tim
 - Attack with left mouse click.
 
 **Cryptic Hints**
-- Pleae with speakers or headphones on.
-- Time flies when you're with friends.
-- Older snakes are stronger.
+- Play with speakers or headphones on.
 - Everything's easier with friends.
+
+**Known Bugs**
+- Interact button doesn't consistently display when near interactables. For now, use your eyes and ears!
+- The no-goodnik in the temple basement 
+- I know, the title screen and game over screens aren't there anymore.
+- Attacking things doesn't work. That unfortunately includes the bossfight. So... right now it's unwinnable.
+
+**To Do**
+- Fix combat
 
  **Assets**
 - Snake and animals and their animations from Quirky Series - FREE Animals Pack (https://assetstore.unity.com/packages/3d/characters/animals/quirky-series-free-animals-pack-178235)
@@ -32,7 +39,8 @@ For the fall 2023 semester, we had just over 2 weeks to make a game. At this tim
 - Person assets and animations from Unity Create With Code Unit 3 - Sound and Effects (https://learn.unity.com/project/unit-3-sound-and-effects?pathwayId=5f7e17e1edbc2a5ec21a20af&missionId=5f7648a4edbc2a5578eb67df)
 - Fire from Free Fire VFX (https://assetstore.unity.com/packages/vfx/particles/fire-explosions/free-fire-vfx-266227)
 - Cat statue from Egyptian Tomb: Cat Statue (https://assetstore.unity.com/packages/3d/environments/historic/egyptian-tomb-cat-statue-119784)
-- Egyptian male statue from Egyptian Statue of a Male Figure (https://assetstore.unity.com/packages/3d/props/egyptian-statue-of-a-male-figure-208808)
+- Poem by Jake Balla of Thundergrater (https://open.spotify.com/track/100czBDXNq9JUpXyLkB8RL?si=76b8bf81d5ea4ecc)
+- Song stuck in Ann Achronissstic's head by 4 Non Blondes (https://open.spotify.com/track/0jWgAnTrNZmOGmqgvHhZEm?si=cf17a727d99a406f)
 
 ---
 **Tutorials**

@@ -1,7 +1,9 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.SearchService;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -91,11 +93,11 @@ public class GameController : MonoBehaviour
 
     }
 
-    void AddAlly(string allyName)
-    {
-        // add allies to an array
-        // this will be checked 
-    }
+    //void AddAlly(string allyName)
+    //{
+    //    // add allies to an array
+    //    // this will be checked 
+    //}
 
     // Stop game, bring up game over text and restart button
     public void GameOver()
