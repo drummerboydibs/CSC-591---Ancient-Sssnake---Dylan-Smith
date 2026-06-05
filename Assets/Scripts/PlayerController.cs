@@ -16,13 +16,15 @@ public class PlayerController : MonoBehaviour
     public Vector3 sizeChange;
     public float timeSinceLastAttack = 0f;
     public float attackDelay = 1f;
+    public float attackRange = 1.5f;
+    public float attackOffset = 1f;
     public AudioClip attackSound;
-    public AudioClip hitSound;
     public AudioClip deathSound;
     public AudioSource audioSource;
     
 
     private bool isOnGround = true;
+    private bool wasMoving = false;
     private Animator playerAnim;
     private GameObject playerSnake;
 
@@ -36,35 +38,43 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerSnake = GameObject.Find("Snake");
-        playerAnim = playerSnake.GetComponent<Animator>();
+        if (playerSnake != null)
+            playerAnim = playerSnake.GetComponent<Animator>();
+        else
+            Debug.LogError("PlayerController: 'Snake' child object not found.");
         gameControllerObject = GameObject.Find("GameController");
-        gameController = gameControllerObject.GetComponent<GameController>();
+        if (gameControllerObject != null)
+            gameController = gameControllerObject.GetComponent<GameController>();
+        else
+            Debug.LogError("PlayerController: 'GameController' object not found.");
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameController == null) return;
         if (!gameController.isTitleScreenActive)
         {
             timeSinceLastAttack += Time.deltaTime;
 
             // Control the snake's motion
-            if (!gameController.isGameOver && !isInConversation && !gameController.isTitleScreenActive)
+            if (!gameController.isGameOver && !isInConversation)
             {
                 float verticalInput = Input.GetAxis("Vertical");
                 float horizontalInput = Input.GetAxis("Horizontal");
                 transform.Translate(new Vector3(0, 0, verticalInput * Time.deltaTime * baseSpeed));
                 transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * turnSpeed);
-                if (verticalInput == 0 && isOnGround == true)
-                {
-                    playerAnim.SetTrigger("stop");
-                }
-                else if (verticalInput != 0 && isOnGround == true)
-                {
-                    playerAnim.SetTrigger("walk");
-                }
 
+                // Only fire the animation trigger on the frame the state changes,
+                // not every frame — SetTrigger queues events and will spam the Animator.
+                bool isMoving = verticalInput != 0 && isOnGround;
+                if (isMoving != wasMoving)
+                {
+                    wasMoving = isMoving;
+                    if (playerAnim != null)
+                        playerAnim.SetTrigger(isMoving ? "walk" : "stop");
+                }
             }
 
 
@@ -79,7 +89,7 @@ public class PlayerController : MonoBehaviour
             // Rescue if player falls through world
             if (transform.position.y < 0)
             {
-                transform.position = new Vector3(transform.position.x, 1, transform.position.y);
+                transform.position = new Vector3(transform.position.x, 1, transform.position.z);
             }
 
             // Death animation
@@ -140,6 +150,34 @@ public class PlayerController : MonoBehaviour
     {
         playerAnim.SetTrigger("attack");
         timeSinceLastAttack = 0;
+
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.clip = attackSound;
+            audioSource.Play();
+        }
+
+        Vector3 attackOrigin = transform.position + transform.forward * attackOffset;
+        Collider[] hits = Physics.OverlapSphere(attackOrigin, attackRange);
+        var hitNpcs = new HashSet<NPC>();
+        var hitEnemies = new HashSet<EnemyController>();
+        foreach (var hit in hits)
+        {
+            if (hit.transform.IsChildOf(transform)) continue;
+
+            var npc = hit.GetComponentInParent<NPC>();
+            if (npc != null && hitNpcs.Add(npc) && npc.isAlive)
+            {
+                npc.TakeDamage(attackPower);
+                continue;
+            }
+
+            var enemy = hit.GetComponentInParent<EnemyController>();
+            if (enemy != null && hitEnemies.Add(enemy))
+            {
+                enemy.TakeDamage(attackPower);
+            }
+        }
     }
 
 

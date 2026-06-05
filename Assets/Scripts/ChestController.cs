@@ -10,32 +10,56 @@ public class ChestController : MonoBehaviour
     float activationRange = 3;
     Dialogue dialogue;
     GameController gameController;
-    
+    bool isInRange = false;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        if (player == null)
+            Debug.LogError("ChestController (" + gameObject.name + "): 'Player' not found in scene.");
+        var dmObj = GameObject.Find("DialogueManager");
+        if (dmObj != null)
+            dialogueManager = dmObj.GetComponent<DialogueManager>();
+        else
+            Debug.LogError("ChestController (" + gameObject.name + "): 'DialogueManager' not found in scene.");
         dialogue = GetComponent<Dialogue>();
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        var gcObj = GameObject.Find("GameController");
+        if (gcObj != null)
+            gameController = gcObj.GetComponent<GameController>();
+        else
+            Debug.LogError("ChestController (" + gameObject.name + "): 'GameController' not found in scene.");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
         distanceToPlayer = (transform.position - player.transform.position).magnitude;
+        bool nowInRange = distanceToPlayer <= activationRange;
 
-        if (!(distanceToPlayer <= activationRange))
+        if (nowInRange && !isInRange)
         {
-            return;
-        } else if (distanceToPlayer <= activationRange && !Input.GetKeyDown(KeyCode.E))
-        {
-            gameController.interactUI.SetActive(true);
+            isInRange = true;
+            if (gameController != null) gameController.RegisterInteractSource(this);
         }
-        else if (distanceToPlayer <= activationRange && Input.GetKeyDown(KeyCode.E))
+        else if (!nowInRange && isInRange)
         {
+            isInRange = false;
+            if (gameController != null) gameController.UnregisterInteractSource(this);
+        }
+
+        if (isInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            if (gameController != null) gameController.UnregisterInteractSource(this);
+            isInRange = false;
             dialogueManager.StartDialogue(dialogue);
         }
+    }
 
+    private void OnDisable()
+    {
+        if (gameController != null) gameController.UnregisterInteractSource(this);
+        isInRange = false;
     }
 }

@@ -14,7 +14,7 @@ For the fall 2023 semester, we had just over 2 weeks to make a game. At this tim
 
 **Known Bugs**
 - Interact button doesn't consistently display when near interactables. For now, use your eyes and ears!
-- The no-goodnik in the temple basement 
+- The no-goodnik in the temple basement. When you hit the lever to open the door, Shady Man is supposed to try to walk to the treasure. The scripts on his behavior and the boulder (yes, there's supposed to be a boulder) aren't working.
 - I know, the title screen and game over screens aren't there anymore.
 - Attacking things doesn't work. That unfortunately includes the bossfight. So... right now it's unwinnable. That's OK, you're all winners in my book.
 - I broke the Archaeologist / boss fight - deleted the custom texture. Time to go spelunking through GitHub repos... I also never finished his scripts.

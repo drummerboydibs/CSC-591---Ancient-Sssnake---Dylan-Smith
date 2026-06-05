@@ -15,7 +15,6 @@ public class NPC : MonoBehaviour
     public int currentHp = 100;
     public AudioClip hitSound;
     public AudioClip deathSound;
-    public AudioClip attackSound;
     AudioSource audioSource;
     public GameController gameController;
 
@@ -31,60 +30,71 @@ public class NPC : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
-        playerController = player.GetComponent<PlayerController>();
+        if (player != null)
+            playerController = player.GetComponent<PlayerController>();
+        else
+            Debug.LogError("NPC (" + gameObject.name + "): 'Player' not found in scene.");
         audioSource = GetComponent<AudioSource>();
-        Animator animator = GetComponent<Animator>();
-        
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        animator = GetComponent<Animator>();
+
+        var dmObj = GameObject.Find("DialogueManager");
+        if (dmObj != null)
+            dialogueManager = dmObj.GetComponent<DialogueManager>();
+        else
+            Debug.LogError("NPC (" + gameObject.name + "): 'DialogueManager' not found in scene.");
         dialogue = GetComponent<Dialogue>();
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
-        
+        var gcObj = GameObject.Find("GameController");
+        if (gcObj != null)
+            gameController = gcObj.GetComponent<GameController>();
+        else
+            Debug.LogError("NPC (" + gameObject.name + "): 'GameController' not found in scene.");
+
 
     }
     private void Update()
     {
+        if (player == null) return;
         distanceToPlayer = (transform.position - player.transform.position).magnitude;
-        if (distanceToPlayer <= activationDistance && isAlive) 
+        bool nowInRange = distanceToPlayer <= activationDistance && isAlive;
+
+        if (nowInRange && !isInRange)
         {
-            gameController.interactUI.SetActive(true);
             isInRange = true;
-            if (Input.GetMouseButton(1))
-            {
-                Debug.Log("Registered mouse button within range.");
-                GetHit();
-
-            }
-        } else
-        {
-            gameController.interactUI.SetActive(false);
-            isInRange = false;
+            if (gameController != null) gameController.RegisterInteractSource(this);
         }
+        else if (!nowInRange && isInRange)
+        {
+            isInRange = false;
+            if (gameController != null) gameController.UnregisterInteractSource(this);
+        }
+    }
 
+    private void OnDisable()
+    {
+        if (gameController != null) gameController.UnregisterInteractSource(this);
+        isInRange = false;
     }
 
     public void TriggerDialogue()
     {
-        gameController.interactUI.SetActive(false);
-        Debug.Log("Interact.UI set to false.");
-        playerController.isInConversation = true;
-        Debug.Log("IsInConversation bool set to true.");
-        dialogueManager.StartDialogue(dialogue);
+        if (gameController != null) gameController.UnregisterInteractSource(this);
+        isInRange = false;
+        if (playerController != null) playerController.isInConversation = true;
+        if (dialogueManager != null) dialogueManager.StartDialogue(dialogue);
 
     }
 
-    
-
-    void GetHit()
+    public void TakeDamage(int damage)
     {
-        Debug.Log("In GetHit()");
-        currentHp -= playerController.attackPower;
-        animator.SetTrigger("hit");
-        if (hitSound != null)
+        if (!isAlive) return;
+        currentHp -= damage;
+        if (animator != null) animator.SetTrigger("hit");
+        if (hitSound != null && audioSource != null)
         {
             audioSource.clip = hitSound;
             audioSource.Play();
         }
-        
+
         if (currentHp <= 0)
         {
             isAlive = false;

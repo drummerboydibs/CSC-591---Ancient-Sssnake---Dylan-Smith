@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -12,8 +10,11 @@ public class EnemyController : MonoBehaviour
     public float timeSinceLastAttack = 0f;
     public float attackDelay = 1.0f;
     public float activationRange = 2.0f;
+    public bool isAlive = true;
 
     GameController gameController;
+    GameObject playerObject;
+    PlayerController playerController;
 
     Animator animator;
 
@@ -21,24 +22,52 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        var gcObj = GameObject.Find("GameController");
+        if (gcObj != null) gameController = gcObj.GetComponent<GameController>();
+        playerObject = GameObject.Find("Player");
+        if (playerObject != null) playerController = playerObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         timeSinceLastAttack += Time.deltaTime;
+        if (!isAlive || playerObject == null) return;
+
+        float distance = (transform.position - playerObject.transform.position).magnitude;
+        if (distance <= activationRange && timeSinceLastAttack >= attackDelay)
+        {
+            Attack();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!isAlive) return;
+        currentHp -= damage;
+        if (animator != null) animator.SetTrigger("hit");
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
 
     void Attack()
     {
-        animator.SetTrigger("attack");
+        if (animator != null) animator.SetTrigger("attack");
         timeSinceLastAttack = 0;
+
+        // Apply damage to the player when in melee range.
+        if (playerController != null)
+        {
+            playerController.currentHP -= attackPower;
+            if (playerController.currentHP < 0) playerController.currentHP = 0;
+        }
     }
 
     void Die()
     {
-        animator.SetTrigger("die");
-
+        isAlive = false;
+        if (animator != null) animator.SetTrigger("die");
     }
 }

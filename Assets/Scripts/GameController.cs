@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
@@ -30,7 +29,9 @@ public class GameController : MonoBehaviour
     GameObject levelProgresserObject;
     LevelProgresser levelProgresser;
 
-    GameObject gameOverDialogue;
+    // Tracks all interactables currently in range of the player. UI is shown
+    // iff this set is non-empty, so no single source can hide it on another's behalf.
+    private readonly HashSet<Object> activeInteractSources = new HashSet<Object>();
 
     
     // Start is called before the first frame update
@@ -38,35 +39,50 @@ public class GameController : MonoBehaviour
     {
         titleScreen = GameObject.Find("TitleScreens");
         gameOverScreen = GameObject.Find("GameOverScreen");
-        gameOverScreen.SetActive(false);
+        if (gameOverScreen != null) gameOverScreen.SetActive(false);
         titleCam = GameObject.Find("TitleCamera");
-        titleCam.SetActive(true);
+        if (titleCam != null) titleCam.SetActive(true);
         player = GameObject.Find("Player");
         mainCam = GameObject.Find("Main Camera");
-        mainCam.SetActive(false);
-        playerController = player.GetComponent<PlayerController>();
-        
-                
+        // If there's no title flow available, fall back to the main camera + active gameplay.
+        if (titleScreen == null && titleCam == null)
+        {
+            isTitleScreenActive = false;
+            if (mainCam != null) mainCam.SetActive(true);
+        }
+        else if (mainCam != null)
+        {
+            mainCam.SetActive(false);
+        }
+        if (player != null)
+            playerController = player.GetComponent<PlayerController>();
+        else
+            Debug.LogError("GameController: 'Player' GameObject not found in scene.");
+
+
         currentGameLevel = 0;
 
         levelProgresserObject = GameObject.Find("LevelTrigger");
-        levelProgresser = levelProgresserObject.GetComponent<LevelProgresser>();
+        if (levelProgresserObject != null)
+        {
+            levelProgresser = levelProgresserObject.GetComponent<LevelProgresser>();
+        }
 
         interactUI = GameObject.Find("InteractMenu");
-        interactUI.SetActive(false);
-        
+        if (interactUI != null) interactUI.SetActive(false);
+
         soundLevel0 = GameObject.Find("DesertSound");
         soundLevel1 = GameObject.Find("TempleSound");
-        soundLevel1.SetActive(false);
+        if (soundLevel1 != null) soundLevel1.SetActive(false);
         soundLevel2 = GameObject.Find("PitSound");
-        soundLevel2.SetActive(false);
-        
+        if (soundLevel2 != null) soundLevel2.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerController.currentHP == 0)
+        if (playerController != null && playerController.currentHP == 0)
         {
             GameOver();
         }
@@ -79,9 +95,9 @@ public class GameController : MonoBehaviour
         {
             TransportPlayerAndAllies(1);
         }
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (Input.GetKey(KeyCode.Keypad3))
         {
-            TransportPlayerAndAllies(1);
+            TransportPlayerAndAllies(2);
         }
     }
 
@@ -104,17 +120,11 @@ public class GameController : MonoBehaviour
 
     }
 
-    //void AddAlly(string allyName)
-    //{
-    //    // add allies to an array
-    //    // this will be checked 
-    //}
-
     // Stop game, bring up game over text and restart button
     public void GameOver()
     {
         isGameOver = true;
-        gameOverScreen.SetActive(true);
+        if (gameOverScreen != null) gameOverScreen.SetActive(true);
     }
 
     // Restart game by reloading the scene
@@ -139,38 +149,38 @@ public class GameController : MonoBehaviour
 
     void UpdateSoundscape(int currentLevel)
     {
-        if (currentLevel == 0)
+        if (soundLevel0 != null) soundLevel0.SetActive(currentLevel == 0);
+        if (soundLevel1 != null) soundLevel1.SetActive(currentLevel == 1);
+        if (soundLevel2 != null) soundLevel2.SetActive(currentLevel == 2);
+    }
+
+    public void RegisterInteractSource(Object src)
+    {
+        if (src == null) return;
+        activeInteractSources.Add(src);
+        if (interactUI != null) interactUI.SetActive(true);
+    }
+
+    public void UnregisterInteractSource(Object src)
+    {
+        if (src == null) return;
+        activeInteractSources.Remove(src);
+        if (interactUI != null && activeInteractSources.Count == 0)
         {
-            soundLevel0.SetActive(true);
-            soundLevel1.SetActive(false);
-            soundLevel2.SetActive(false);
-            
-        }
-        else if (currentLevel == 1)
-        {
-            soundLevel0.SetActive(false);
-            soundLevel1.SetActive(true);
-            soundLevel2.SetActive(false);
-            
-        }
-        else if (currentLevel == 2)
-        {
-            soundLevel0.SetActive(false);
-            soundLevel1.SetActive(false);
-            soundLevel2.SetActive(true);
-            
+            interactUI.SetActive(false);
         }
     }
 
     public void StartGame()
     {
-        Destroy(titleScreen);
+        if (titleScreen != null) Destroy(titleScreen);
 
         // Continue button to trigger.
         // Array of canvas probably?
-        
-        mainCam.SetActive(true);
-        GameObject.Find("TitleScreens").SetActive(false);
+
+        if (mainCam != null) mainCam.SetActive(true);
+        var ts = GameObject.Find("TitleScreens");
+        if (ts != null) ts.SetActive(false);
         isTitleScreenActive = false;
         return;
     }

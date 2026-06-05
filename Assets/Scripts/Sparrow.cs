@@ -10,11 +10,14 @@ public class Sparrow : MonoBehaviour
     public bool isBeingCarried = false;
     GameObject charlie;
     public float distanceToCharlie;
+    bool didTriggerSpecial = false;
 
     // Start is called before the first frame update
     void Start()
     {
         npcController = GetComponent<NPC>();
+        if (npcController == null)
+            Debug.LogError("Sparrow (" + gameObject.name + "): missing NPC component.");
         player = GameObject.Find("Player");
         charlie = GameObject.Find("Charlie");
     }
@@ -22,37 +25,46 @@ public class Sparrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!npcController.isInRange)
+        // Range-gated: only the dialogue trigger needs the player nearby.
+        if (npcController != null && npcController.isInRange && !hasBeenTalkedTo && Input.GetKeyDown(KeyCode.E))
         {
-            return;
-        }
-        
-        else if (!hasBeenTalkedTo && Input.GetKeyDown(KeyCode.E))
-        {
-            npcController.TriggerDialogue();
+            if (npcController != null) npcController.TriggerDialogue();
             hasBeenTalkedTo = true;
             isBeingCarried = true;
         }
-        
-        if (isBeingCarried)
+
+        // Follow must run regardless of range, otherwise the sparrow is
+        // stranded the moment the player walks away.
+        if (isBeingCarried && player != null)
         {
             transform.position = (player.transform.position + (Vector3.back / 2));
         }
 
-        distanceToCharlie = (transform.position - charlie.transform.position).magnitude;
-        if (distanceToCharlie < charlie.GetComponent<NPC>().activationDistance)
+        // Only meaningful once we're being carried toward Charlie.
+        if (isBeingCarried && !didTriggerSpecial && charlie != null)
         {
-            Special();
+            distanceToCharlie = (transform.position - charlie.transform.position).magnitude;
+            var charlieNpc = charlie.GetComponent<NPC>();
+            float activation = charlieNpc != null ? charlieNpc.activationDistance : 3f;
+            if (distanceToCharlie < activation)
+            {
+                Special();
+            }
         }
-
     }
 
-    
+
 
     void Special()
     {
-        charlie.AddComponent<FriendController>();
-        npcController.Die();
+        didTriggerSpecial = true;
+        isBeingCarried = false;
+        if (charlie.GetComponent<FriendController>() == null)
+        {
+            charlie.AddComponent<FriendController>();
+        }
+        if (npcController != null) npcController.Die();
+        enabled = false;
         StartCoroutine(CleanUp());
     }
 

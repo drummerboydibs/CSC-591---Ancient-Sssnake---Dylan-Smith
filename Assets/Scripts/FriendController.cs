@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
+[DisallowMultipleComponent]
 public class FriendController : MonoBehaviour
 {
     public float jumpForce = 20f;
@@ -31,79 +31,118 @@ public class FriendController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();   
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        if (gameObject.GetComponent<NavMeshAgent>() != null)
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
         {
-            agent = GetComponent<NavMeshAgent>();
+            // Friends added at runtime (e.g. Reese) may not have a NavMeshAgent
+            // pre-configured in the scene. Add one with sensible defaults and
+            // snap it to the nearest NavMesh point so it can pathfind.
+            agent = gameObject.AddComponent<NavMeshAgent>();
+            agent.speed = 3.5f;
+            agent.angularSpeed = 120f;
+            agent.acceleration = 8f;
+            agent.stoppingDistance = 1f;
+            agent.radius = 0.4f;
+            agent.height = 1.2f;
+
+            if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
+                agent.Warp(hit.position);
+            }
+            else
+            {
+                Debug.Log("Could not snap " + gameObject.name + " to NavMesh; follow will be disabled.");
+            }
         }
-        else Debug.Log("No NavMeshAgent loaded on " + gameObject.name);
-        
+
         player = GameObject.Find("Player");
-        playerController = player.GetComponent<PlayerController>();
+        if (player != null)
+            playerController = player.GetComponent<PlayerController>();
+        else
+            Debug.LogError("FriendController (" + gameObject.name + "): 'Player' not found in scene.");
         enemy = GameObject.Find("Archaeologist");
-        enemyController = enemy.GetComponent<EnemyController>();
+        if (enemy != null) enemyController = enemy.GetComponent<EnemyController>();
         npc = GetComponent<NPC>();
 
         // Player levels up every time they make a friend!
-        playerController.LevelUp();
-        Debug.Log("Levelled up.");
-        
-        
+        if (playerController != null)
+        {
+            playerController.LevelUp();
+            Debug.Log("Levelled up.");
+        }
+
         // Reduce sound / chatter when an animal becomes your friend
         asc = GetComponent<AnimalSoundController>();
-        asc.minOffset += 4;
-        asc.maxOffset += 4;
+        if (asc != null)
+        {
+            asc.minOffset += 4;
+            asc.maxOffset += 4;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
         distanceToPlayer = (transform.position - player.transform.position).magnitude;
-        distanceToEnemy = (transform.position - enemy.transform.position).magnitude;
+        bool enemyAvailable = enemy != null && enemyController != null && enemyController.isAlive;
+        distanceToEnemy = enemyAvailable
+            ? (transform.position - enemy.transform.position).magnitude
+            : float.MaxValue;
+
+        // De-aggro and resume following the player once the enemy is dead.
+        if (isAggroed && !enemyAvailable)
+            isAggroed = false;
+
         timeSinceLastAttack += Time.deltaTime;
 
+        bool canPath = agent != null && agent.isOnNavMesh;
+
         // Follow player
-        if (distanceToPlayer > 1.5 && !isAggroed)
+        if (canPath && distanceToPlayer > 1.5 && !isAggroed)
         {
             agent.destination = player.transform.position;
         }
-        
+
         if (distanceToPlayer > 10  && !isAggroed)
         {
             CatchUp();
         }
 
         // if enemy is in range, attack!
-        if (distanceToEnemy < 10)
+        if (enemyAvailable && distanceToEnemy < 10)
         {
             isAggroed = true;
-            agent.destination = enemy.transform.position;
+            if (canPath) agent.destination = enemy.transform.position;
         }
 
-        if (isAggroed && distanceToEnemy < attackRange && timeSinceLastAttack > attackDelay)
+        if (isAggroed && enemyAvailable && distanceToEnemy < attackRange && timeSinceLastAttack > attackDelay)
         {
             Attack();
         }
 
-        if (npc.currentHp == 0)
+        if (npc != null && !npc.isAlive)
         {
             Die();
         }
 
-        // Rescue if player falls through world
+        // Rescue if friend falls through world
         if (transform.position.y < 0)
         {
-            transform.position = new Vector3(transform.position.x, 1, transform.position.y);
+            transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         }
 
     }
 
     void Attack()
     {
-        Debug.Log("Entered FriendController.Attack().");
         anim.SetTrigger("attack");
-        enemyController.currentHp -= attackPower;
+        if (enemyController != null && enemyController.isAlive)
+        {
+            enemyController.TakeDamage(attackPower);
+        }
         timeSinceLastAttack = 0;
     }
 
@@ -115,7 +154,15 @@ public class FriendController : MonoBehaviour
 
     void CatchUp()
     {
-        transform.position = player.transform.position;
+        Vector3 target = player.transform.position;
+        if (agent != null && NavMesh.SamplePosition(target, out NavMeshHit hit, 3f, NavMesh.AllAreas))
+        {
+            agent.Warp(hit.position);
+        }
+        else
+        {
+            transform.position = target;
+        }
     }
 
 }
